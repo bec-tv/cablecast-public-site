@@ -103,6 +103,20 @@
       {{vod-chapters chapters=vodChapters seekto=seekto setSeekTo=(action 'setSeekTo')}}
       <hr />
     {{/if}}
+    <!-- link example -->
+    <!--<a href="https://bectv.foxycart.com/cart?name=Cool%20Example&price=10&color=red&code=sku123">Add a red Cool Example</a>-->
+    <!-- form example -->
+    <h3>ORDER COPIES</h3>
+    <form action="https://bectv.foxycart.com/cart" method="post" accept-charset="utf-8">
+      <input type="hidden" name="name" value="{{show.cgTitle}}" />
+      <input type="hidden" name="price" value="25" />
+      <input type="hidden" name="code" value="Show {{show.id}}" />
+      <!--TEMP 10/24/19-BM discount for fine arts-->
+      {{#if (eq show.category.id "3")}}
+        <input type="hidden" name="coupon" value="JeffersonBandOnly" />
+      {{/if}}
+      <input type="submit" value="Add to Cart" class="submit" />
+    </form>
     <h3 class="show-page-airtimes-header">Upcoming air times</h3>
     {{#each runs as |run|}}
     	<div class="show-future-runs-container">
