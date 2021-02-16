@@ -1,9 +1,10 @@
-import Ember from 'ember';
-import ENV from 'public/config/environment';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
+import ENV from 'cablecast-public-site/config/environment';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['show-stub'],
-  rootURL: Ember.computed(function() {
+  rootURL: computed(function() {
     return ENV.rootURL;
   })
 });

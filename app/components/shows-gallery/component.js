@@ -1,8 +1,10 @@
-import Ember from 'ember';
-import {task} from 'ember-concurrency';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { task } from 'ember-concurrency';
 
-export default Ember.Component.extend({
-  store: Ember.inject.service(),
+export default Component.extend({
+  store: service(),
 
   classNames: ['shows-gallery'],
 
@@ -13,8 +15,11 @@ export default Ember.Component.extend({
 
   collapsed:false,
 
-  showsTask: task(function * (){
+  showsTask: task(function * () {
     let search = this.get('gallery.savedShowSearch');
+    if (!search) {
+      return;
+    }
     let limit = this.get('gallery.displayLimit') * 3;
     let showIds = search.get('results').slice(0,limit);
 
@@ -33,7 +38,7 @@ export default Ember.Component.extend({
     this.set('shows',shows);
   }),
 
-  filteredShows: Ember.computed('shows.[]',function(){
+  filteredShows: computed('shows.[]',function(){
     let shows = this.get('shows') || [];
     let limit = this.get('gallery.displayLimit');
     return shows.filterBy('showThumbnails.length').splice(0,limit);

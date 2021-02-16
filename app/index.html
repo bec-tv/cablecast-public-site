@@ -7,14 +7,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link rel="stylesheet" href="{{rootURL}}assets/public.css">
-
     <!-- FOXYCART -->
     <script data-cfasync="false" src="https://cdn.foxycart.com/bectv/loader.js" async defer></script>
     <!-- /FOXYCART -->
 
     {{content-for "head"}}
+    
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/cablecast-public-site.css">
+ 
 
     {{content-for "head-footer"}}
   </head>
@@ -22,7 +23,7 @@
     {{content-for "body"}}
 
     <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/public.js"></script>
+    <script src="{{rootURL}}assets/cablecast-public-site.js"></script>
 
     {{content-for "body-footer"}}
   </body>

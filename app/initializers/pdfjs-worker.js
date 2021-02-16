@@ -1,5 +1,5 @@
 /* globals PDFJS */
-import ENV from 'public/config/environment';
+import ENV from 'cablecast-public-site/config/environment';
 
 export default {
     name: 'init-pdfjs-workersrc',
@@ -12,4 +12,4 @@ export default {
         }
       }
     }
-}
+};

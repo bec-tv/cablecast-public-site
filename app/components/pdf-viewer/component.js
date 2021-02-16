@@ -1,7 +1,11 @@
 /* globals PDFJS */
-import Ember from 'ember';
+import { debounce } from '@ember/runloop';
+import $ from 'jquery';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+
+
+export default Component.extend({
   didInsertElement() {
     let url = this.get('url');
     let container = this.element.getElementsByClassName('pdf-wrapper')[0];
@@ -17,35 +21,34 @@ export default Ember.Component.extend({
     let pdfHistory = new PDFJS.PDFHistory({
       linkService: pdfLinkService
     });
-    pdfLinkService.setHistory(pdfHistory)
+    pdfLinkService.setHistory(pdfHistory);
     let pdfFindController = new PDFJS.PDFFindController({
       pdfViewer
     });
-    pdfViewer.setFindController(pdfFindController)
+    pdfViewer.setFindController(pdfFindController);
     PDFJS.getDocument(url).then(function (pdf) {
-      pdfViewer.setDocument(pdf).then(function() {
+      pdfViewer.setDocument(pdf).then(function () {
         pdfViewer.currentScaleValue = 'auto';
       });
 
-      pdfLinkService.setDocument(pdf)
+      pdfLinkService.setDocument(pdf);
       pdfHistory.initialize(pdf.fingerprint);
     });
     this.set('pdfViewer', pdfViewer);
-    Ember.$(window).on('resize.' + this.get('elementId'), this._handleResizeEvent.bind(this));
+    $(window).on('resize.' + this.get('elementId'), this._handleResizeEvent.bind(this));
   },
 
-  willDestroyElement: function() {
-        this._super();
-    Ember.$(window).off('resize.' + this.get('elementId'));
+  willDestroyElement: function () {
+    this._super();
+    $(window).off('resize.' + this.get('elementId'));
 
   },
 
   _handleResizeEvent() {
-    Ember.run.debounce(this, this.rescalePdf, 150);
+    debounce(this, this.rescalePdf, 150);
   },
 
   rescalePdf() {
-    console.log('rescaling pdf...');
     this.get('pdfViewer').currentScaleValue = 'auto';
   }
 });

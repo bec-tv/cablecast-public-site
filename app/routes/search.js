@@ -1,8 +1,8 @@
-import Ember from 'ember';
-import SetPageTitle from 'public/mixins/set-page-title';
-import ResetScroll from 'public/mixins/reset-scroll';
+import Route from '@ember/routing/route';
+import SetPageTitle from 'cablecast-public-site/mixins/set-page-title';
+import ResetScroll from 'cablecast-public-site/mixins/reset-scroll';
 
-export default Ember.Route.extend(SetPageTitle, ResetScroll, {
+export default Route.extend(SetPageTitle, ResetScroll, {
 	queryParams: {
 		query: {
 			refreshModel: true

@@ -1,8 +1,9 @@
-import Ember from 'ember';
-import ENV from 'public/config/environment';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
+import ENV from 'cablecast-public-site/config/environment';
 
-export default Ember.Component.extend({
-  rootURL: Ember.computed(function() {
+export default Component.extend({
+  rootURL: computed(function() {
     return ENV.rootURL;
   }),
 	channelContactInfo: null

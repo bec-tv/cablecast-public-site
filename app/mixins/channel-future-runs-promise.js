@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import moment from 'moment';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   getFutureRuns(channel){
     return this.store.query('schedule-item', {
@@ -17,7 +18,6 @@ export default Ember.Mixin.create({
         .filterBy('cgExempt',false)
         .filter((item)=>{
           let now = new Date();
-          let start = item.get('start');
           let end = item.get('end');
           return end > now;
         })

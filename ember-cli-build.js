@@ -1,9 +1,13 @@
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var Funnel = require('broccoli-funnel');
+'use strict';
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const Funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
 
   var app = new EmberApp(defaults, {
+    'ember-cli-babel': {
+      includePolyfill: true
+    },
     fingerprint: {
       exclude: ['pdf.worker.js']
     },
@@ -20,54 +24,40 @@ module.exports = function(defaults) {
   	destDir: '/scss-files'
   });
 
-  var PDFJS = new Funnel('bower_components/pdfjs-dist/build',{
+  let PDFJS = new Funnel('node_modules/pdfjs-dist/build',{
       srcDir: '/',
       include: ['pdf.js','pdf.worker.js'],
       destDir: '/assets'
   });
 
-  var PDFJSExtras = new Funnel('bower_components/pdfjs-dist/web',{
+  let PDFJSExtras = new Funnel('node_modules/pdfjs-dist/web',{
       srcDir: '/',
       include: ['compatibility.js'],
       destDir: '/assets'
   });
 
-  var PDFJSCmaps = new Funnel('bower_components/pdfjs-dist/cmaps',{
+  let PDFJSCmaps = new Funnel('node_modules/pdfjs-dist/cmaps',{
       srcDir: '/',
       include: ['**/*.bcmap'],
       destDir: '/assets/web/cmaps'
   });
 
-
-  app.import('bower_components/bootstrap/dist/css/bootstrap.css');
-  app.import('bower_components/bootstrap/dist/css/bootstrap.css.map', {
-      destDir: 'assets'
+  app.import('node_modules/pdfjs-dist/build/pdf.js', {
+    using: [
+      {
+        transformation: 'fastbootShim'
+      }
+    ]
   });
-  app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot', {
-      destDir: 'fonts'
+  app.import('node_modules/pdfjs-dist/web/pdf_viewer.css');
+  app.import('node_modules/pdfjs-dist/web/pdf_viewer.js', {
+    using: [
+      {
+        transformation: 'fastbootShim'
+      }
+    ]
   });
-  app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf', {
-      destDir: 'fonts'
-  });
-  app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg', {
-      destDir: 'fonts'
-  });
-  app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff', {
-      destDir: 'fonts'
-  });
-  app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2', {
-      destDir: 'fonts'
-  });
-
-  if (!process.env.EMBER_CLI_FASTBOOT) {
-    app.import('bower_components/bootstrap/dist/js/bootstrap.js');
-    app.import('bower_components/pdfjs-dist/build/pdf.js');
-    app.import('bower_components/pdfjs-dist/web/pdf_viewer.css');
-    app.import('bower_components/pdfjs-dist/web/pdf_viewer.js');
-  }
-
-  app.import('bower_components/moment/moment.js');
-
 
   return app.toTree([scssFiles, PDFJS, PDFJSExtras, PDFJSCmaps]);
-};
+
+}
