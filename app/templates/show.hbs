@@ -163,6 +163,15 @@
         }}
         <hr>
       {{/if}}
+      {{#if (eq currentChannelId "1")}}
+        <h3>ORDER COPIES</h3>
+        <form action="https://bectv.foxycart.com/cart" method="post" accept-charset="utf-8">
+          <input type="hidden" name="name" value="{{show.cgTitle}}" />
+          <input type="hidden" name="price" value="25" />
+          <input type="hidden" name="code" value="Show {{show.id}}" />
+          <input type="submit" value="Add to Cart" class="submit" />
+        </form>
+      {{/if}}
       <h3 class="show-page-airtimes-header">
         Upcoming air times
       </h3>
