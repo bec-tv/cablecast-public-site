@@ -1,23 +1,25 @@
-<div id="header">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4">
-        <div class="header-logo-wrapper">
-          <LinkTo @route="index" class="main">
-            {{#if channel.publicSite.logo.url}}
-              <img
-                src={{channel.publicSite.logo.url}}
-                class="header-logo-img"
-				alt="Site Logo"
-              >
-            {{else}}
-              <img
-                src="{{rootURL}}images/temp-peg-logo.png"
-                class="header-logo-img"
-				alt="Site Logo"
-              >
-            {{/if}}
-          </LinkTo>
+<nav class="main-nav-menu" ...attributes>
+  <div id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <div class="header-logo-wrapper">
+            <LinkTo @route="index" class="main">
+              {{#if channel.publicSite.logo.url}}
+                <img
+                  src={{channel.publicSite.logo.url}}
+                  class="header-logo-img"
+  				alt="Site Logo"
+                >
+              {{else}}
+                <img
+                  src="{{rootURL}}images/temp-peg-logo.png"
+                  class="header-logo-img"
+  				alt="Site Logo"
+                >
+              {{/if}}
+            </LinkTo>
+          </div>
         </div>
       </div>
       <div class="col-xs-12 col-sm-8 pull-right">
@@ -55,4 +57,4 @@
       </div>
     </div>
   </div>
-</div>
+</nav>
