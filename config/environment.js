@@ -36,6 +36,8 @@ module.exports = function (environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
+
+    CCSServer: 'https://screenweave-staging.herokuapp.com'
   };
 
   if (environment === 'development') {

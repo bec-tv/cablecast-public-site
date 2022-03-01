@@ -55,7 +55,7 @@ export default class ShowRoute extends Route {
 
   async model(params) {
     let host = params.host || 'watch.pittsfield.org';
-    let base = "https://cablecast-cloud-pr-120.herokuapp.com";
+    let base = "ENV.CCSServer";
     if (ENV.environment === 'development') {
       base = "http://localhost:5000";
     }
