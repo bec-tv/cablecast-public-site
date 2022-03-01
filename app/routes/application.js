@@ -105,7 +105,7 @@ export default class ApplicationRoute extends Route {
   }
 
   async model(params) {
-    let fastHost = this.get('fastboot.request.host');
+    let fastHost = this.get('fastboot.request.host'); // returns reflect-plus.herokuapp.com directly but not cloudfront link
     if (fastHost != null) {
       console.log("fastHost: " + fastHost);
     }
@@ -113,28 +113,7 @@ export default class ApplicationRoute extends Route {
       console.log("fastHost: " + "null");
     }
     
-
-    let paramsHost = params.host;
-    console.log("paramsHost: " + paramsHost);
-    if (paramsHost != null) {
-      console.log("fastHost: " + paramsHost);
-    }
-    else {
-      console.log("fastHost: " + "null");
-    }
-
-    let routerUrl = this.router.currentURL;
-    console.log("routerUrl: " + routerUrl);
-    if (routerUrl != null) {
-      console.log("fastHost: " + routerUrl);
-    }
-    else {
-      console.log("fastHost: " + "null");
-    }
-    
     let host = params.host || ENV.DemoHost;
-
-
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
       base = "http://localhost:5000";

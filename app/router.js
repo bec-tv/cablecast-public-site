@@ -1,9 +1,9 @@
 import EmberRouter from '@ember/routing/router';
-import config from 'cablecast-public-site/config/environment';
+import ENV from 'cablecast-public-site/config/environment';
 
 class Router extends EmberRouter {
-  location = config.locationType;
-  rootURL = config.rootURL;
+  location = ENV.locationType;
+  rootURL = ENV.rootURL;
 }
 
 Router.map(function () {
