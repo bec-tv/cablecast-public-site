@@ -105,14 +105,32 @@ export default class ApplicationRoute extends Route {
   }
 
   async model(params) {
-    let fastHost = this.fastboot.request.host;
-    console.log("fastHost: " + fastHost);
+    let fastHost = this.get('fastboot.request.host');
+    if (fastHost != null) {
+      console.log("fastHost: " + fastHost);
+    }
+    else {
+      console.log("fastHost: " + "null");
+    }
+    
 
-    let paramsHost = params.Host;
+    let paramsHost = params.host;
     console.log("paramsHost: " + paramsHost);
+    if (paramsHost != null) {
+      console.log("fastHost: " + paramsHost);
+    }
+    else {
+      console.log("fastHost: " + "null");
+    }
 
     let routerUrl = this.router.currentURL;
     console.log("routerUrl: " + routerUrl);
+    if (routerUrl != null) {
+      console.log("fastHost: " + routerUrl);
+    }
+    else {
+      console.log("fastHost: " + "null");
+    }
     
     let host = params.host || ENV.DemoHost;
 
