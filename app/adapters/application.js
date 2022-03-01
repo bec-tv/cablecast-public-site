@@ -9,13 +9,13 @@ export default class Application extends RESTAdapter {
   @service
   fastboot;
 
-  namespace = 'cablecastapi/v1';
+  namespace = 'api';
 
   /* eslint-disable getter-return */
   @computed('fastboot.isFastBoot')
   get host() {
     if (ENV.environment === 'production' && this.get('fastboot.isFastBoot')) {
-      return 'http://localhost:55001';
+      return ENV.CCSServer;
     }
     if (ENV.environment === 'development' && this.get('fastboot.isFastBoot')) {
       return 'http://localhost:4200';

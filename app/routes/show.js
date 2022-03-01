@@ -54,7 +54,7 @@ export default class ShowRoute extends Route {
   }
 
   async model(params) {
-    let host = params.host || 'watch.pittsfield.org';
+    let host = params.host || 'eng-demo.cablecast.tv';
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
       base = "http://localhost:5000";
