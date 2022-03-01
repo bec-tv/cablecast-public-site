@@ -54,7 +54,7 @@ export default class ShowRoute extends Route {
   }
 
   async model(params) {
-    let host = params.host || 'eng-demo.cablecast.tv';
+    let host = params.host || ENV.DemoHost;
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
       base = "http://localhost:5000";
