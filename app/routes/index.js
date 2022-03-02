@@ -16,7 +16,8 @@ export default class IndexRoute extends Route {
   @service futureRuns;
 
   async model(params) {
-    var host = '';    
+    /*
+    var host = '';
     if (this.get('fastboot.isFastBoot')) {
       let headers = this.get('fastboot.request.headers');
       host = headers.get('x-ccs-host');
@@ -35,5 +36,6 @@ export default class IndexRoute extends Route {
     let json = await result.json();
     
     return json;
+    */
   }
 }
