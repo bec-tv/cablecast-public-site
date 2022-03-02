@@ -106,10 +106,9 @@ export default class ApplicationRoute extends Route {
   async model(params) {
     console.log(this.get('fastboot.isFastBoot'));
     console.log(this.fastboot.isFastBoot);
-    console.log(fastboot.isFastBoot);
 
-    let host = '';
-    let isFastBoot = this.get('fastBoot.isFastBoot');
+    var host = '';
+    var isFastBoot = this.get('fastBoot.isFastBoot');
     console.log(isFastBoot);
     if (isFastBoot) {
       console.log("MADE IT IN")
