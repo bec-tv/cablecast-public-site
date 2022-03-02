@@ -53,6 +53,7 @@ export default class ShowRoute extends Route {
   }
 
   async model(params) {
+    /*
     let host = '';
     if (this.get('fastboot.isFastBoot')) {
       let headers = this.get('fastboot.request.headers');
@@ -70,6 +71,7 @@ export default class ShowRoute extends Route {
     let json = await result.json();
     
     return json;
+    */
   }
 
   afterModel(model) {
