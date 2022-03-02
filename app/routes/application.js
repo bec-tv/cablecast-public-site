@@ -114,13 +114,15 @@ export default class ApplicationRoute extends Route {
         host = this.window.location.host
       }
     }
+
+    console.log(host)
+    console.log(this.document.location.host)
+    console.log(this.window.location.host)
     
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
       base = "http://localhost:5000";
     }
-    console.log('final host: ' + host);
-    debugger;
     let result = await fetch(`${base}/api/publicsitedata?host=${host}`);
     let json = await result.json();
     
