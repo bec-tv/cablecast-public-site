@@ -104,6 +104,10 @@ export default class ApplicationRoute extends Route {
   }
 
   async model(params) {
+    console.log(this.get('fastboot.isFastBoot'));
+    console.log(this.fastboot.isFastBoot);
+    console.log(fastboot.isFastBoot);
+
     let host = '';
     let isFastBoot = this.get('fastBoot.isFastBoot');
     console.log(isFastBoot);
@@ -115,6 +119,7 @@ export default class ApplicationRoute extends Route {
     else {
       console.log("NOT FAST BOOT");
       if (this.window) {
+        console.log("WINDOW DEFINED");
         host = this.window.location.host
       }
     }
