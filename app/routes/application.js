@@ -115,9 +115,7 @@ export default class ApplicationRoute extends Route {
       }
     }
 
-    console.log(host)
-    console.log(this.document.location.host)
-    console.log(this.window.location.host)
+    console.log(this.get('fastboot.isFastBoot'))
     
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
