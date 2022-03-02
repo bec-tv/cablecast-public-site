@@ -4,20 +4,15 @@ import ENV from 'cablecast-public-site/config/environment';
 import fetch from 'fetch';
 
 export default class ApplicationRoute extends Route {
-  @service
-  site;
+  @service site;
 
-  @service
-  fastboot;
+  @service fastboot;
 
-  @service
-  headData;
+  @service headData;
 
-  @service
-  metrics;
+  @service metrics;
 
-  @service
-  router;
+  @service router;
 
   queryParams = {
     channel: {

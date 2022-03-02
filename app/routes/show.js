@@ -8,6 +8,8 @@ import ENV from 'cablecast-public-site/config/environment';
 export default class ShowRoute extends Route {
   @service headData;
 
+  @service fastboot;
+
   setHeadData(show) {
     let data = {
       type: 'video.episode',

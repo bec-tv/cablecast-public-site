@@ -15,6 +15,8 @@ function filterShows(shows) {
 export default class IndexRoute extends Route {
   @service futureRuns;
 
+  @service fastboot;
+
   async model(params) {
     let host = '';
     if (this.get('fastboot.isFastBoot')) {
