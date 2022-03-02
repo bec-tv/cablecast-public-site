@@ -116,6 +116,9 @@ export default class ApplicationRoute extends Route {
     }
 
     console.log('final host: ' + host)
+    console.log(`${base}/api/publicsitedata?host=${host}`)
+    console.log(`${base}/api/publicsitedata?host=` + host);
+    console.log(base + '/api/publicsitedata?host=' + host);
     
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
