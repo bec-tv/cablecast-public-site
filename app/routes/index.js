@@ -17,7 +17,7 @@ export default class IndexRoute extends Route {
 
   async model(params) {
     var host = '';    
-    if (this.fastboot.isFastBoot) {
+    if (this.get('fastboot.isFastBoot')) {
       let headers = this.get('fastboot.request.headers');
       host = headers.get('x-ccs-host');
     }
