@@ -105,20 +105,29 @@ export default class ApplicationRoute extends Route {
 
   async model(params) {
     console.log(this.get('fastboot.isFastBoot'));
-    console.log(this.fastboot.isFastBoot);
+    if (this.get('fastBoot.isFastBoot')) {
+      console.log('True 1');
+    }
 
-    var host = '';
+    console.log(this.fastboot.isFastBoot);
+    if (this.fastboot.isFastBoot) {
+      console.log('True 2');
+    }
+
     var isFastBoot = this.get('fastBoot.isFastBoot');
     console.log(isFastBoot);
     if (isFastBoot) {
-      console.log("MADE IT IN")
+      console.log('True 3');
+    }
+
+    var host = '';
+    
+    if (true) {
       let headers = this.get('fastboot.request.headers');
       host = headers.get('x-ccs-host');
     }
     else {
-      console.log("NOT FAST BOOT");
       if (this.window) {
-        console.log("WINDOW DEFINED");
         host = this.window.location.host
       }
     }
