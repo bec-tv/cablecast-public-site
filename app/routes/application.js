@@ -119,8 +119,9 @@ export default class ApplicationRoute extends Route {
     if (ENV.environment === 'development') {
       base = "http://localhost:5000";
     }
-    let request = `${base}/api/publicsitedata?host=${host}`;
-    let result = await fetch(request);
+    console.log('final host: ' + host);
+    debugger;
+    let result = await fetch(`${base}/api/publicsitedata?host=${host}`);
     let json = await result.json();
     
     return json;
