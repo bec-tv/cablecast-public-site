@@ -38,7 +38,6 @@ module.exports = function (environment) {
     },
 
     CCSServer: 'https://screenweave-staging.herokuapp.com',
-    DemoHost: 'eng-demo.cablecast.tv',
   };
 
   if (environment === 'development') {
