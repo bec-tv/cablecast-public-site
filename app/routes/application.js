@@ -105,10 +105,14 @@ export default class ApplicationRoute extends Route {
 
   async model(params) {
     var host = '';
-    debugger;
+    console.log(this.get('fastboot.isFastBoot'));
     if (this.get('fastboot.isFastBoot')) {
+      console.log('IN FASTBOOT');
       let headers = this.get('fastboot.request.headers');
+      console.log(this.get('fastboot.request'));
+      console.log(this.get('fastboot.request.headers'));
       host = headers.get('x-ccs-host');
+      console.log(host);
     }
     else {
       if (this.window) {
