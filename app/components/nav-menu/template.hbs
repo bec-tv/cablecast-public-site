@@ -21,13 +21,13 @@
             </LinkTo>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-8 pull-right">
+        <div class="col-xs-12 col-sm-4 pull-right">
           <div class="row">
             <div class="col-xs-12 header-controls pull-right">
               {{#if @siteConfig.liveUrl}}
                 <LinkTo
                   @route="watch-now"
-                  @model={{@channel.liveStreams.firstObject.id}}
+                  @model={{@siteConfig.liveStreams.firstObject.id}}
                   class="btn btn-watch pull-right">
                   Watch
                 </LinkTo>

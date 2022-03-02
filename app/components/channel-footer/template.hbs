@@ -4,11 +4,10 @@
       <div class="row">
         <div class="col-md-8">
           <h1 class="footer-header">
-            {{@config.aboutPageShortDescription}}
+            {{@config.pageShortDescription}}
           </h1>
           <p>
-            {{!-- template-lint-disable no-triple-curlies --}}
-            {{{@config.aboutPageDescription}}}
+            {{@config.pageDescription}}
           </p>
           {{#if (and (gt @publicChannels.length 1) @showOtherChannels)}}
             <h2 class="public-site-links-title">
@@ -20,9 +19,7 @@
             </h2>
             <div class="channel-stub-container">
               {{#each @publicChannels as |otherChannel|}}
-                {{#if (not-eq @channel otherChannel)}}
-                  <ChannelStub @channel={{otherChannel}} />
-                {{/if}}
+                <ChannelStub @channel={{otherChannel}} />
               {{/each}}
             </div>
           {{/if}}

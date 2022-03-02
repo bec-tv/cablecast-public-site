@@ -7,5 +7,5 @@
     <hr>
   </div>
 </div>
-<ChannelFooter @config={{this.model.channel.publicSite}} @hasPodcasts={{this.hasPodcasts}} @channel={{this.model.channel}} @publicChannels={{this.publicChannels}} @showOtherChannels={{this.showOtherChannels}} />
+<ChannelFooter @config={{this.model}} @hasPodcasts={{this.model.hasPodcasts}} @publicChannels={{this.model.publicChannels}} @showOtherChannels={{this.model.showOtherChannels}} />
 <UpdateChannelStyles @channel-id={{this.model.channel.id}} />

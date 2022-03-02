@@ -1,23 +1,23 @@
 <div ...attributes>
   {{!-- template-lint-disable no-html-comments --}}
   <!-- Described channel.channelContactInfo !-->
-  {{#if this.config.contactPhone}}
+  {{#if this.config.phoneNumber}}
     <p>
       <strong>
         Call Us:
       </strong>
-      <a href="tel:{{@config.contactPhone}}">
-        {{@config.contactPhone}}
+      <a href="tel:{{@config.phoneNumber}}">
+        {{@config.phoneNumber}}
       </a>
     </p>
   {{/if}}
-  {{#if @config.contactEmail}}
+  {{#if @config.email}}
     <p>
       <strong>
         Email Us:
       </strong>
-      <a href="mailto:{{@config.contactEmail}}">
-        {{@config.contactEmail}}
+      <a href="mailto:{{@config.email}}">
+        {{@config.email}}
       </a>
     </p>
   {{/if}}
