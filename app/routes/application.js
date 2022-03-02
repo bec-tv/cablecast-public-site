@@ -1,5 +1,4 @@
 import { inject as service } from '@ember/service';
-import { hash } from 'rsvp';
 import Route from '@ember/routing/route';
 import ENV from 'cablecast-public-site/config/environment';
 import fetch from 'fetch';
@@ -111,7 +110,7 @@ export default class ApplicationRoute extends Route {
       host = headers.get('x-ccs-host');
     }
     else {
-      host = window.location.host;
+      host = this.window.location.host;
     }
     
     let base = ENV.CCSServer;

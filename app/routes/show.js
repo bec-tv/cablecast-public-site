@@ -1,5 +1,4 @@
 import classic from 'ember-classic-decorator';
-import { hash, all } from 'rsvp';
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import fetch from 'fetch';
@@ -60,9 +59,9 @@ export default class ShowRoute extends Route {
       host = headers.get('x-ccs-host');
     }
     else {
-      host = window.location.host;
+      host = this.window.location.host;
     }
-    
+
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
       base = "http://localhost:5000";
