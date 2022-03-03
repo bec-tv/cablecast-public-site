@@ -13,13 +13,21 @@
               {{this.lastResult}}
               of
               {{@meta.count}}
-              shows.
+              {{#if (eq @meta.count 1)}}
+                show.
+              {{else}}
+                shows.
+              {{/if}}
             </small>
           {{else}}
             <small>
               Displaying
               {{@shows.length}}
-              shows.
+              {{#if (eq @shows.length 1)}}
+                show.
+              {{else}}
+                shows.
+              {{/if}}
             </small>
           {{/if}}
         </h1>

@@ -13,8 +13,8 @@
         </h1>
       </div>
       <div class="col-sm-2">
-        {{#if @gallery.id}}
-          <LinkTo @route="gallery" @model={{@gallery.id}} class="gallery-show-all-link">
+        {{#if @gallery.cablecastGalleryId}}
+          <LinkTo @route="gallery" @model={{@gallery.cablecastGalleryId}} class="gallery-show-all-link">
             Show All...
           </LinkTo>
         {{/if}}

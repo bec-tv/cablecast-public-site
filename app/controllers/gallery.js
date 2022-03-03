@@ -8,13 +8,11 @@ export default class GalleryController extends Controller {
   queryParams = ['page'];
   page = 1;
 
-  @alias('model.shows.meta')
+  @alias('model.meta')
   meta;
 
-  @action
-  submitSearch(query) {
-    this.set('query', query);
-  }
+  @alias('model.shows')
+  shows;
 
   @action
   goToPage(page) {
