@@ -4,9 +4,9 @@
     @title="Search Results"
     @loading={{this.model.isPending}}
     @meta={{this.meta}}
-    @shows={{this.model}}
+    @shows={{this.shows}}
     @page={{this.page}}
-    @pageSize={{50}}
+    @pageSize={{this.meta.pageSize}}
     @total={{this.meta.count}}
     @goToPage={{action "goToPage"}} />
 </div>

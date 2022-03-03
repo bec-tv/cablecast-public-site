@@ -13,6 +13,9 @@ export default class SearchController extends Controller {
   @alias('model.meta')
   meta;
 
+  @alias('model.shows')
+  shows;
+
   @computed('page', 'meta.{offset,pageSize}')
   get firstResult() {
     return 1 + this.get('meta.offset') * this.get('meta.pageSize');

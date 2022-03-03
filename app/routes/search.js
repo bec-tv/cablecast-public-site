@@ -1,5 +1,7 @@
 import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
+import ENV from 'cablecast-public-site/config/environment';
+import fetch from 'fetch';
 
 @classic
 export default class SearchRoute extends Route {
@@ -12,13 +14,21 @@ export default class SearchRoute extends Route {
     },
   };
 
-  model(params) {
-    var channel = this.modelFor('application').channel;
-    return this.store.query('show', {
-      offset: params.page - 1,
-      search: params.query,
-      location: channel.get('primaryLocation'),
-    });
+  async model(params) {
+    let offset = params.page - 1;
+    let search = params.query;
+
+    let host = this.modelFor('application').host;
+
+    let base = ENV.CCSServer;
+    if (ENV.environment === 'development') {
+      base = "http://localhost:5000";
+      host = "d31lcq7208ihag.cloudfront.net";
+    }
+
+    let result = await fetch(`${base}/api/publicsitedata/shows?host=${host}&offset=${offset}&search=${search}`);
+    let json = await result.json();
+    return json;
   }
 
   setupController(controller, model) {

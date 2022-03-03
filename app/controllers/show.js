@@ -23,27 +23,25 @@ export default class ShowController extends Controller {
   @alias('application.channel')
   currentChannelId;
 
-  @computed(
-    'model.show.vods.firstObject.{chapters.@each.deleted,chaptersPublished}'
-  )
+  // TODO - fix later
+  /* eslint-disable getter-return */
+  @computed('model.show.vods.firstObject.{chapters.@each.deleted,chaptersPublished}')
   get vodChapters() {
+    return [];
     if (!this.get('model.show.vods.firstObject.chaptersPublished')) {
       return [];
     }
     let chapters = this.get('model.show.vods.firstObject.chapters') || [];
     return chapters.rejectBy('deleted').rejectBy('quickAdded').sortBy('offset');
   }
+  /* eslint-enable getter-return */
 
   queryParams = ['seekto'];
   seekto = null;
 
   //TODO - fix this code later
   /* eslint-disable getter-return */
-  @computed(
-    'model.show.customFields',
-    'site.publicSite.fieldDisplays.[]',
-    'store'
-  )
+  @computed('model.show.customFields', 'site.publicSite.fieldDisplays.[]', 'store')
   get embededPdf() {
     return false;
     // let pdfDisplays = this.get('site.publicSite.fieldDisplays')

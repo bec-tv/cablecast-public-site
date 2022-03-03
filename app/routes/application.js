@@ -81,8 +81,7 @@ export default class ApplicationRoute extends Route {
       title: siteConfig.title,
       description: siteConfig.description,
     };
-    // TODO - Square logo 
-    let logo = siteConfig.logo;
+    let logo = siteConfig.squareLogo || siteConfig.logo;
     if (logo) {
       data.image = encodeURI(logo);
     }

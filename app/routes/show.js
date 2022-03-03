@@ -23,17 +23,6 @@ export default class ShowRoute extends Route {
     this.appendJsonLD(data, show);
   }
 
-  findAThumbnailUrl(show) {
-    let thumbnail = show.get('showThumbnails').findBy('quality', 'Large');
-    if (!thumbnail) {
-      thumbnail = show.get('showThumbnails.firstObject');
-    }
-    if (thumbnail) {
-      return encodeURI(thumbnail.get('url'));
-    }
-    return this.get('headData.socialMedia.image');
-  }
-
   appendJsonLD(data, show) {
     let jsonLD = {
       '@context': 'http://schema.org',
@@ -55,14 +44,7 @@ export default class ShowRoute extends Route {
   }
 
   async model(params) {
-    let host = '';
-    if (this.get('fastboot.isFastBoot')) {
-      let headers = this.get('fastboot.request.headers');
-      host = headers.get('x-ccs-host');
-    }
-    else {
-      host = window.location.host
-    }
+    let host = this.modelFor('application').host;
 
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
