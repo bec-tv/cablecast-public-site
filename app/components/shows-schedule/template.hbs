@@ -1,7 +1,7 @@
 <div ...attributes>
-  {{#each @schedule as |item|}}
+  {{#each @items as |item|}}
     <ScheduleRow @item={{item}} />
   {{else}}
-    Nothing scheduled at this time.
+    <h5>Nothing scheduled on this date...</h5>
   {{/each}}
 </div>

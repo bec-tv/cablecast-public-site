@@ -15,7 +15,7 @@ export default class ApplicationRoute extends Route {
   @service router;
 
   queryParams = {
-    channel: {
+    siteId: {
       refreshModel: true,
     },
   };
@@ -112,7 +112,13 @@ export default class ApplicationRoute extends Route {
       base = "http://localhost:5000";
       host = "d31lcq7208ihag.cloudfront.net";
     }
-    let result = await fetch(`${base}/api/publicsitedata?host=${host}`);
+
+    let site = '1';
+    if (params.siteId) {
+      site = params.siteId;
+    }
+
+    let result = await fetch(`${base}/api/publicsitedata?host=${host}&siteId=${site}`);
     let json = await result.json();
     
     return json;

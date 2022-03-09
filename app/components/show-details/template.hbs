@@ -14,7 +14,7 @@
               {{value}}
             </a>
           {{else if (eq fd.widget "date")}}
-            {{moment-format value "l"}}
+            <LocalTime @utcTime={{value}} @format="l" />
           {{else if (eq fd.widget "block-text")}}
             <p>
               {{value}}

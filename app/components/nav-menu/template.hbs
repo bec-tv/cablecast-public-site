@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-4">
           <div class="header-logo-wrapper">
-            <LinkTo @route="index" class="main">
+            <LinkTo @route="index" @query={{hash siteId=siteConfig.siteId}} class="main">
               {{#if @siteConfig.logo}}
                 <img
                   src={{@siteConfig.logo}}
@@ -27,7 +27,7 @@
               {{#if @siteConfig.liveUrl}}
                 <LinkTo
                   @route="watch-now"
-                  @model={{@siteConfig.liveStreams.firstObject.id}}
+                  @model={{@siteConfig.liveUrl}}
                   class="btn btn-watch pull-right">
                   Watch
                 </LinkTo>

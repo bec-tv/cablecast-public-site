@@ -4,7 +4,7 @@ import Controller from '@ember/controller';
 
 @classic
 export default class ApplicationController extends Controller {
-  queryParams = ['host', 'channel', 'showOtherChannels'];
+  queryParams = ['siteId'];
   showOtherChannels = true;
 
   @computed('model.channel.primaryLocation.id', 'model.projects')

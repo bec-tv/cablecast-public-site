@@ -8,15 +8,15 @@ export default class WatchNowRoute extends Route {
   @service
   headData;
 
-  @service
-  futureRuns;
-
   model(params) {
+    return;
+    /* TODO
     let { channel } = this.modelFor('application');
 
     return hash({
       futureRuns: this.futureRuns.fetch(channel),
       liveStream: this.store.findRecord('live-stream', params.stream_id),
     });
+    */
   }
 }
