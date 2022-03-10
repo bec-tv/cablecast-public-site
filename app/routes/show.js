@@ -50,7 +50,6 @@ export default class ShowRoute extends Route {
 
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
-      base = "http://localhost:5000";
       host = "d31lcq7208ihag.cloudfront.net";
     }
 

@@ -37,10 +37,11 @@ module.exports = function (environment) {
       // when it is created
     },
 
-    CCSServer: 'https://screenweave-staging.herokuapp.com',
+    CCSServer: 'https://cablecast-ott-api.herokuapp.com',
   };
 
   if (environment === 'development') {
+    ENV.CCSServer = "screenweave-staging.herokuapp.com";
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
