@@ -7,6 +7,7 @@
       <div class="schedule-row clearfix">
         <div class="plaque">
           {{#if (eq run this.onAirRun)}}
+            <!-- TODO live
             <LinkTo
               @route="watch-now"
               @model={{@channel.liveUrl}}
@@ -16,16 +17,20 @@
                 Now
               </div>
             </LinkTo>
+            -->
+            <div class="plaque-content now">
+              Now
+            </div>
           {{else}}
-            <LinkTo @route="show" @model={{run.show.id}}>
+            <LinkTo @route="show" @model={{run.showId}}>
               <div class="plaque-content not-now">
-                <LocalTime @utcTime={{run.runDateTime}} @format="h:mm a" />
+                {{moment-format (local-time run.runDateTime) "h:mm a"}}
               </div>
             </LinkTo>
           {{/if}}
         </div>
         <div class="schedule-container u-truncate-text">
-          <LinkTo @route="show" @model={{run.show.id}}>
+          <LinkTo @route="show" @model={{run.showId}}>
             {{run.show.title}}
           </LinkTo>
         </div>

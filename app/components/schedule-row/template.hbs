@@ -8,7 +8,7 @@
           </div>
         {{else}}
           <div class="plaque-content not-now">
-            <LocalTime @utcTime={{@item.runDateTime}} @format="hh:mm a" />
+            {{moment-format (local-time @item.runDateTime) "hh:mm a"}}
           </div>
         {{/if}}
       </LinkTo>
