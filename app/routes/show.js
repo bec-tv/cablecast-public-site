@@ -44,16 +44,22 @@ export default class ShowRoute extends Route {
   }
 
   async model(params) {
-    let host = this.modelFor('application').host;
+    let app = this.modelFor('application');
+    let host = app.host;
+    let site = app.siteId;
 
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
-      base = "http://localhost:5000";
       host = "d31lcq7208ihag.cloudfront.net";
     }
-    let result = await fetch(`${base}/api/publicsitedata/shows/${params.id}?host=${host}`);
+
+    if (site === undefined) {
+      site = 1;
+    }
+
+    let result = await fetch(`${base}/api/publicsitedata/shows/${params.id}?host=${host}&siteId=${site}`);
     let json = await result.json();
-    
+
     return json;
   }
 

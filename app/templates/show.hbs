@@ -1,5 +1,6 @@
 {{page-title this.show.title}}
 {{#if this.embededPdf}}
+  <!-- TODO embeddedPdf
   <div class="row show-page">
     <div class="col-sm-12">
       <h2 class="show-page-header">
@@ -87,7 +88,7 @@
             </h3>
             {{#each this.runs as |run|}}
               <div class="show-future-runs-container">
-                {{moment-calendar run.runDateTime}}
+                {{moment-calendar (local-time run.runDateTime)}}
               </div>
             {{else}}
               There are currently no upcoming air times.
@@ -107,17 +108,18 @@
       {{!pdf-js pdf=documentUrl toolbarComponent=null}}
     </div>
   </div>
+  -->
 {{else}}
   <div class="row show-page">
     <div class="col-sm-12">
-      {{#if this.show.embedCode}}
+      {{#if this.model.embedCode}}
         <div class="embed-responsive embed-responsive-16by9">
           {{! template-lint-disable no-triple-curlies }}
-          {{{this.show.embedCode}}}
+          {{{this.model.embedCode}}}
         </div>
-      {{else if this.show.thumbnail}}
+      {{else if this.model.thumbnail}}
         <div class="embed-responsive embed-responsive-16by9">
-          <img src={{this.show.thumbnail}} class="img-responsive" />
+          <img src={{this.model.thumbnail}} class="img-responsive" />
         </div>
       {{/if}}
     </div>
@@ -125,7 +127,7 @@
   <div class="row show-page">
     <div class="col-sm-12">
       <h2 class="show-page-header">
-        {{this.show.title}}
+        {{this.model.title}}
       </h2>
       <div class="show-page-social-links">
         <FbShareButton>Share</FbShareButton>
@@ -133,21 +135,18 @@
       </div>
     </div>
   </div>
-  <!-- TODO reimplement this and pdf view
   <div class="row show-page show-page-last-row">
     <div class="col-sm-6">
+      {{#if (gt this.model.fieldDisplays.length 0)}}
       <h3 class="show-page-show-details-header">
         Show Details
       </h3>
-      <ShowDetails
-        @show={{this.show}}
-        @producer={{this.producer}}
-        @reels={{this.reels}}
-        @runs={{this.runs}}
-        @currentChannelId={{this.currentChannelId}}
-      />
+      <ShowDetails @fieldDisplays={{this.model.fieldDisplays}} />
+      {{/if}}
     </div>
+    {{#if (gt this.model.upcomingRuns.length 0)}}
     <div class="col-sm-6">
+      <!-- TODO chapters
       {{#if
         (and
           this.show.vods.firstObject.chapters this.show.vods.firstObject.chaptersPublished
@@ -163,17 +162,18 @@
         />
         <hr>
       {{/if}}
+      -->
       <h3 class="show-page-airtimes-header">
         Upcoming air times
       </h3>
-      {{#each this.runs as |run|}}
+      {{#each this.model.upcomingRuns as |run|}}
         <div class="show-future-runs-container">
-          {{moment-calendar run.runDateTime}}
+          {{moment-calendar (local-time run.runDateTime)}}
         </div>
       {{else}}
         There are currently no upcoming air times.
       {{/each}}
     </div>
+    {{/if}}
   </div>
-  -->
 {{/if}}

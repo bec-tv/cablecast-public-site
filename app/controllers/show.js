@@ -14,9 +14,6 @@ export default class ShowController extends Controller {
   @controller
   application;
 
-  @alias('model')
-  show;
-
   @alias('model.runs')
   runs;
 

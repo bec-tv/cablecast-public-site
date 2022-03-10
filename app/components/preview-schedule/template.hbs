@@ -3,30 +3,35 @@
     Schedule
   </h3>
   <div class="schedule">
-    {{#each @futureRuns as |run|}}
+    {{#each @runs as |run|}}
       <div class="schedule-row clearfix">
         <div class="plaque">
           {{#if (eq run this.onAirRun)}}
+            <!-- TODO live
             <LinkTo
               @route="watch-now"
-              @model={{@channel.liveStreams.firstObject.id}}
-              @alt={{this.onAirRun.show.cgTitle}}
+              @model={{@channel.liveUrl}}
+              @alt={{this.onAirRun.show.title}}
               class="live-stream-name">
               <div class="plaque-content now">
                 Now
               </div>
             </LinkTo>
+            -->
+            <div class="plaque-content now">
+              Now
+            </div>
           {{else}}
-            <LinkTo @route="show" @model={{run.show.id}}>
+            <LinkTo @route="show" @model={{run.showId}}>
               <div class="plaque-content not-now">
-                {{moment-format run.runDateTime "h:mm a"}}
+                {{moment-format (local-time run.runDateTime) "h:mm a"}}
               </div>
             </LinkTo>
           {{/if}}
         </div>
         <div class="schedule-container u-truncate-text">
-          <LinkTo @route="show" @model={{run.show.id}}>
-            {{run.show.cgTitle}}
+          <LinkTo @route="show" @model={{run.showId}}>
+            {{run.show.title}}
           </LinkTo>
         </div>
       </div>

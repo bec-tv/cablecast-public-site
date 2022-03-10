@@ -6,12 +6,12 @@ import Component from '@ember/component';
 @classic
 @tagName('')
 export default class PreviewSchedule extends Component {
-  @computed('futureRuns.[]')
+  @computed('runs.[]')
   get onAirRun() {
-    return this.futureRuns.find((item) => {
+    return this.runs.find((item) => {
+      let start = new Date(item.runDateTime + 'Z');
+      let end = new Date(item.endDateTime + 'Z')
       let now = new Date();
-      let start = item.get('start');
-      let end = item.get('end');
       return start <= now && end > now;
     });
   }

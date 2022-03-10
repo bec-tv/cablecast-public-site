@@ -1,5 +1,5 @@
 <nav>
-  <LinkTo @route="index" class="main">
+  <LinkTo @route="index" @query={{hash siteId=this.model.siteId}} class="main">
     <img src={{this.model.logoUrl}} alt="Site logo">
   </LinkTo>
   <div class="menu">

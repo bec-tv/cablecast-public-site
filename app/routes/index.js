@@ -1,40 +1,12 @@
 import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
-import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
-import fetch from 'fetch';
-import ENV from 'cablecast-public-site/config/environment';
-
-function filterShows(shows) {
-  return shows.filter(function (show) {
-    return get(show, 'showThumbnails.length') > 0 && show.cgExempt === false;
-  });
-}
 
 @classic
 export default class IndexRoute extends Route {
-  @service futureRuns;
-
   @service fastboot;
 
   async model(params) {
-    let host = '';
-    if (this.get('fastboot.isFastBoot')) {
-      let headers = this.get('fastboot.request.headers');
-      host = headers.get('x-ccs-host');
-    }
-    else {
-      host = window.location.host
-    }
-
-    let base = ENV.CCSServer;
-    if (ENV.environment === 'development') {
-      base = "http://localhost:5000";
-      host = "d31lcq7208ihag.cloudfront.net";
-    }
-    let result = await fetch(`${base}/api/publicsitedata?host=${host}`);
-    let json = await result.json();
-    
-    return json;
+    return this.modelFor('application');
   }
 }

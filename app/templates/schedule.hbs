@@ -6,29 +6,19 @@
     </div>
     <div class="col-xs-12 col-lg-4">
       <div class="schedule-date-picker">
-        <a href="{{this.rootURL}}schedule?channel={{this.channel.id}}&currentDay={{this.prevDateString}}"
-          class="picker glyphicon glyphicon-triangle-left"
-          aria-hidden="true"
-          {{action 'prevDay' }}></a>
-        {{#if this.fastboot.isFastBoot}}
-        <form action="{{this.rootURL}}schedule" method="GET" class="multi-wide">
-          <input type='hidden' value={{this.channel.id}} name='channel' />
-          <input value={{moment-format this.currentDay 'YYYY-MM-DD' }} name='currentDay' />
-          <input type="submit" style="display:none" />
-        </form>
-        {{else}}
-          <PikadayInput @onSelection={{action 'changeDate'}} @value={{this.currentDay}} @format='YYYY-MM-DD' />
-        {{/if}}
-        <a href="{{this.rootURL}}schedule?channel={{this.channel.id}}&currentDay={{this.nextDateString}}"
-          class="picker glyphicon glyphicon-triangle-right"
-          aria-hidden="true"
-          {{action 'nextDay' }}></a>
+        <a class="picker glyphicon glyphicon-triangle-left" aria-hidden="true"
+          {{action 'prevDay' }}>
+        </a>
+        <PikadayInput @onSelection={{action 'changeDate'}} @value={{this.currentDate}} @format='YYYY-MM-DD' />
+        <a class="picker glyphicon glyphicon-triangle-right" aria-hidden="true"
+          {{action 'nextDay' }}>
+        </a>
       </div>
     </div>
   </div>
   <div class="schedule-wrapper clearfix">
     <div class="col-xs-12">
-      <ShowsSchedule @schedule={{this.model}} class="shows-schedule is-desktop" />
+      <ShowsSchedule @items={{this.model.scheduleItems}} class="shows-schedule is-desktop" />
     </div>
   </div>
   <div class="social-wrapper">

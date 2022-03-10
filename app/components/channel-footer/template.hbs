@@ -4,22 +4,22 @@
       <div class="row">
         <div class="col-md-8">
           <h1 class="footer-header">
-            {{@config.pageShortDescription}}
+            {{@siteConfig.pageShortDescription}}
           </h1>
           <p>
-            {{@config.pageDescription}}
+            {{@siteConfig.pageDescription}}
           </p>
-          {{#if (and (gt @publicChannels.length 1) @showOtherChannels)}}
+          {{#if (gt @siteConfig.otherSites.length 0)}}
             <h2 class="public-site-links-title">
-              {{#if (gt @publicChannels.length 2)}}
+              {{#if (gt @siteConfig.otherSites.length 1)}}
                 Browse our other channels
               {{else}}
                 Browse our other channel
               {{/if}}
             </h2>
             <div class="channel-stub-container">
-              {{#each @publicChannels as |otherChannel|}}
-                <ChannelStub @channel={{otherChannel}} />
+              {{#each @siteConfig.otherSites as |otherSite|}}
+                <ChannelStub @otherSite={{otherSite}} />
               {{/each}}
             </div>
           {{/if}}
@@ -28,7 +28,7 @@
           <h1 class="footer-header">
             Contact Us
           </h1>
-          <ContactUs @config={{@config}} @hasPodcasts={{@hasPodcasts}} />
+          <ContactUs @config={{@siteConfig}} @hasPodcasts={{@siteConfig.hasPodcasts}} />
         </div>
       </div>
     </div>
