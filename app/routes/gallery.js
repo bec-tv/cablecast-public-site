@@ -18,7 +18,7 @@ export default class GalleryRoute extends Route {
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
       base = "http://localhost:5000";
-      host = "d31lcq7208ihag.cloudfront.net";
+      host = "ray-dev-local-reflect.cablecast.tv";
     }
     let result = await fetch(`${base}/api/publicsitedata/galleries/${params.id}?offset=${offset}&host=${host}`);
     let json = await result.json();

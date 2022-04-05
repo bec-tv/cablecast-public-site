@@ -15,7 +15,7 @@ export default class ShowRoute extends Route {
       type: 'video.episode',
       card: 'summary_large_image',
       description: show.description || show.title,
-      image: show.thumbnail
+      image: show.thumbnailUrl
     };
     let headData = this.headData;
     headData.set('socialMedia', data);
@@ -50,7 +50,7 @@ export default class ShowRoute extends Route {
 
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
-      host = "d31lcq7208ihag.cloudfront.net";
+      host = "ray-dev-local-reflect.cablecast.tv";
     }
 
     if (site === undefined) {

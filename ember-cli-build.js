@@ -14,6 +14,19 @@ module.exports = function (defaults) {
     svg: {
       paths: ['public/svg'],
     },
+    outputPaths: {
+      app: {
+        html: 'index.html',
+        css: {
+          'app': '/resources/cablecast-public-site.css'
+        },
+        js: '/resources/cablecast-public-site.js'
+      },
+      vendor: {
+        css: '/resources/vendor.css',
+        js: '/resources/vendor.js'
+      }
+    }
   });
 
   var scssFiles = new Funnel('app/styles', {

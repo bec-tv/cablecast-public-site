@@ -109,7 +109,7 @@ export default class ApplicationRoute extends Route {
     
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
-      host = "d31lcq7208ihag.cloudfront.net";
+      host = "ray-dev-local-reflect.cablecast.tv";
     }
 
     let site = '1';

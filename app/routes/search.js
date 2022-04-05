@@ -22,7 +22,7 @@ export default class SearchRoute extends Route {
 
     let base = ENV.CCSServer;
     if (ENV.environment === 'development') {
-      host = "d31lcq7208ihag.cloudfront.net";
+      host = "ray-dev-local-reflect.cablecast.tv";
     }
 
     let result = await fetch(`${base}/api/publicsitedata/shows?host=${host}&offset=${offset}&search=${search}`);
