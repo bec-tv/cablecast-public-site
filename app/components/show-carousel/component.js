@@ -12,6 +12,12 @@ export default class ShowCarousel extends Component {
 
   didInsertElement() {
     super.didInsertElement(...arguments);
-    jQuery('#carousel').carousel('cycle');
+    
+    //4-7-2022:BM:
+    //  This throws an exception and causes the app to stop loading.
+    //  I'd rather have the page load than the carousel auto-rotate,
+    //  So I'm commenting this out for now
+
+    // jQuery('#carousel').carousel('cycle');
   }
 }
