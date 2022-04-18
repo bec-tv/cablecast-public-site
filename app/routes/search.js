@@ -1,10 +1,11 @@
 import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
-import ENV from 'cablecast-public-site/config/environment';
-import fetch from 'fetch';
+import { inject as service } from '@ember/service';
 
 @classic
 export default class SearchRoute extends Route {
+  @service api;
+
   queryParams = {
     query: {
       refreshModel: true,
@@ -17,15 +18,12 @@ export default class SearchRoute extends Route {
   async model(params) {
     let offset = params.page - 1;
     let search = params.query;
-
-    let host = this.modelFor('application').host;
-
-    let base = ENV.CCSServer;
-    if (ENV.environment === 'development') {
-      host = "ray-dev-local-reflect.cablecast.tv";
-    }
-
-    let result = await fetch(`${base}/api/publicsitedata/shows?host=${host}&offset=${offset}&search=${search}`);
+    let api = this.get('api');
+    
+    let result = await api.fetch(`api/publicsitedata/shows`, {
+      search: search,
+      offset: offset
+    });
     let json = await result.json();
     return json;
   }

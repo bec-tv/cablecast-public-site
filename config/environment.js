@@ -17,6 +17,7 @@ module.exports = function (environment) {
     fastboot: {
       hostWhitelist: [/.+/],
     },
+    CC_LOCAL: process.env.CC_LOCAL === "TRUE",
     environment,
     rootURL: '/',
     modulePrefix: 'cablecast-public-site',
@@ -59,6 +60,15 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+  }
+
+  let proxy = process.argv.join(' ').match(/--proxy[ =](\S+)/);
+  if (proxy && proxy.length && proxy.length >= 2) {
+    proxy = proxy[1];
+  }
+
+  if (proxy) {
+    ENV.PROXY = proxy;
   }
 
   // We may still need the this in Cablecast, but for cloud deployments we do not

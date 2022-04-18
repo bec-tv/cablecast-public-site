@@ -38,27 +38,20 @@ export default class ShowController extends Controller {
 
   //TODO - fix this code later
   /* eslint-disable getter-return */
-  @computed('model.show.customFields', 'site.publicSite.fieldDisplays.[]', 'store')
+  @computed('model.fieldDisplays.@each.{widget,value}', 'store')
   get embededPdf() {
-    return false;
-    // let pdfDisplays = this.get('site.publicSite.fieldDisplays')
-    //   .sortBy('order')
-    //   .filterBy('widget', 'pdf');
-    // for (let i = 0; i < pdfDisplays.length; i++) {
-    //   let fd = pdfDisplays[i];
-    //   let fileField = this.get('model.show.customFields').find((field) => {
-    //     return field.type === 'file' && fd.get('showField') === field.showField;
-    //   });
-    //   if (fileField && fileField.value) {
-    //     let file = this.store.peekRecord('web-file', fileField.value);
-    //     if (/.+\.pdf$/.test(file.get('name'))) {
-    //       return {
-    //         url: (file || {}).url,
-    //         fieldDisplay: pdfDisplays[i],
-    //       };
-    //     }
-    //   }
-    // }
+    let pdfDisplays = this.get('model.fieldDisplays')
+      .sortBy('order')
+      .filterBy('widget', 'pdf');
+
+    if (pdfDisplays.length) {
+      return {
+        url: pdfDisplays[pdfDisplays.length -1].value,
+        fieldDisplay: pdfDisplays[pdfDisplays.length -1]
+      };
+    } else {
+      return null;
+    }
   }
   /* eslint-enable getter-return */
 

@@ -31,13 +31,13 @@ export default class VodChapters extends Component {
       var activeChapter = null;
       var time = event.data.value;
       for (var i = 0; i < chapters.length; i++) {
-        var offset = chapters[i].get('offset');
+        var offset = chapters[i].offset;
 
         if (offset <= time) {
           if (i + 1 < chapters.length) {
             // Test if the next chapter's offset is greater than time.
             // If it is than we this is the active chapter. If not we want to test the next chapter.
-            if (chapters[i + 1].get('offset') > time) {
+            if (chapters[i + 1].offset > time) {
               activeChapter = chapters[i];
               break;
             }
@@ -60,7 +60,7 @@ export default class VodChapters extends Component {
     }
     this.set('activeChapter', chapter);
     var element = this.element.querySelector(
-      `[data-chapter="${chapter.get('id')}"]`
+      `[data-chapter="${chapter.id}"]`
     );
     var componentElement = jQuery(this.element);
     componentElement.animate({
@@ -90,8 +90,8 @@ export default class VodChapters extends Component {
   cueTo(chapter) {
     var setSeekTo = this.setSeekTo;
     if (setSeekTo) {
-      setSeekTo(chapter.get('offset'));
+      setSeekTo(chapter.offset);
     }
-    this.seekTo(chapter.get('offset'));
+    this.seekTo(chapter.offset);
   }
 }

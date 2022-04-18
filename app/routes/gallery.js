@@ -1,10 +1,13 @@
 import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
-import fetch from 'fetch';
 import ENV from 'cablecast-public-site/config/environment';
+import { inject as service } from '@ember/service';
 
 @classic
 export default class GalleryRoute extends Route {
+  @service
+  api;
+
   queryParams = {
     page: {
       refreshModel: true,
@@ -13,14 +16,8 @@ export default class GalleryRoute extends Route {
 
   async model(params) {
     let offset = params.page - 1;
-    let host = this.modelFor('application').host;
 
-    let base = ENV.CCSServer;
-    if (ENV.environment === 'development') {
-      base = "http://localhost:5000";
-      host = "ray-dev-local-reflect.cablecast.tv";
-    }
-    let result = await fetch(`${base}/api/publicsitedata/galleries/${params.id}?offset=${offset}&host=${host}`);
+    let result = await api.fetch(`$api/publicsitedata/galleries/${params.id}`, {offset: offset});
     let json = await result.json();
     
     return json;

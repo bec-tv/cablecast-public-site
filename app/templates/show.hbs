@@ -1,10 +1,9 @@
-{{page-title this.show.title}}
+{{page-title this.model.title}}
 {{#if this.embededPdf}}
-  <!-- TODO embeddedPdf
   <div class="row show-page">
     <div class="col-sm-12">
       <h2 class="show-page-header">
-        {{this.show.title}}
+        {{this.model.title}}
       </h2>
       <div class="show-page-social-links hidden-xs">
         <FbShareButton>Share</FbShareButton>
@@ -17,16 +16,14 @@
       <div class="row show-page show-page-video-col">
         {{! VOD or Image}}
         <div class="col-sm-12">
-          {{#if
-            (or this.show.vods.firstObject.isWatchable this.show.vods.firstObject.isReady)
-          }}
+          {{#if this.model.embedCode}}
             <div class="embed-responsive embed-responsive-16by9">
               {{! template-lint-disable no-triple-curlies }}
-              {{{this.show.embedCode}}}
+              {{{this.model.embedCode}}}
             </div>
           {{else}}
             <div class="embed-responsive embed-responsive-16by9">
-              <img src={{this.show.thumbnailUrl}} class="img-responsive" />
+              <img src={{this.model.thumbnailUrl}} class="img-responsive" />
             </div>
           {{/if}}
           <div class="show-page-social-links visible-xs-block">
@@ -41,7 +38,7 @@
         {{!Chapters / details Tabs}}
         <div class="col-sm-12">
           <div class="show-page-section-btns-wrapper clearfix">
-            {{#if this.vodChapters}}
+            {{#if this.model.chapters}}
               <button
                 type="button"
                 class="btn show-page-section-btn pull-left
@@ -77,11 +74,12 @@
           {{! Show Details / Chapters}}
           {{#if (eq this.activeTab "details")}}
             <ShowDetails
-              @show={{this.show}}
-              @producer={{this.producer}}
+              @fieldDisplays={{this.model.fieldDisplays}}
+              {{!-- @show={{this.model}}
+              @producer={{this.model.producer}}
               @reels={{this.reels}}
               @runs={{this.runs}}
-              @currentChannelId={{this.currentChannelId}}
+              @currentChannelId={{this.currentChannelId}} --}}
             />
             <h3 class="show-page-airtimes-header">
               Upcoming air times
@@ -95,7 +93,7 @@
             {{/each}}
           {{else}}
             <VodChapters
-              @chapters={{this.vodChapters}}
+              @chapters={{this.model.chapters}}
               @seekto={{this.seekto}}
               @setSeekTo={{action "setSeekTo"}}
             />
@@ -108,7 +106,6 @@
       {{!pdf-js pdf=documentUrl toolbarComponent=null}}
     </div>
   </div>
-  -->
 {{else}}
   <div class="row show-page">
     <div class="col-sm-12">
@@ -144,25 +141,29 @@
       <ShowDetails @fieldDisplays={{this.model.fieldDisplays}} />
       {{/if}}
     </div>
-    {{#if (gt this.model.upcomingRuns.length 0)}}
-    <div class="col-sm-6">
-      <!-- TODO chapters
+ 
+    
       {{#if
         (and
-          this.show.vods.firstObject.chapters this.show.vods.firstObject.chaptersPublished
+          this.model.embedCode
+          this.model.chapters
         )
       }}
+      <div class="col-sm-6">
         <h3 class="show-details-chapters-header">
           Chapters
         </h3>
         <VodChapters
-          @chapters={{this.vodChapters}}
+          @chapters={{this.model.chapters}}
           @seekto={{this.seekto}}
           @setSeekTo={{action "setSeekTo"}}
         />
         <hr>
+      </div>
       {{/if}}
-      -->
+
+    {{#if (gt this.model.upcomingRuns.length 0)}}
+    <div class="col-sm-6">
       <h3 class="show-page-airtimes-header">
         Upcoming air times
       </h3>

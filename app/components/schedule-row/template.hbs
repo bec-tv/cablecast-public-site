@@ -15,7 +15,7 @@
     </div>
     <div class="schedule-container">
       <div class="play-icon is-desktop">
-        <LinkTo @route="show" @model={{@item.showId}} @alt={{@item.show.title}}>
+        <LinkTo @route="show" @model={{@item.showId}} @alt={{@item.title}}>
           <span
             class="glyphicon glyphicon-play play-icon-link"
             aria-hidden="true"
@@ -25,10 +25,10 @@
       </div>
       <div
         class="schedule-title {{unless this.media.isLg "is-mobile"}} u-truncate-text"
-        title="{{@item.show.title}}"
+        title="{{@item.title}}"
       >
-        <LinkTo @route="show" @model={{@item.showId}} @alt={{@item.show.title}} class="show-link">
-          {{@item.show.title}}
+        <LinkTo @route="show" @model={{@item.showId}} @alt={{@item.title}} class="show-link">
+          {{@item.title}}
         </LinkTo>
       </div>
     </div>

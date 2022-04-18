@@ -1,7 +1,6 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import ENV from 'cablecast-public-site/config/environment';
-import fetch from 'fetch';
 
 export default class ApplicationRoute extends Route {
   @service site;
@@ -14,8 +13,10 @@ export default class ApplicationRoute extends Route {
 
   @service router;
 
+  @service api;
+
   queryParams = {
-    siteId: {
+    site: {
       refreshModel: true,
     },
   };
@@ -98,28 +99,17 @@ export default class ApplicationRoute extends Route {
   }
 
   async model(params) {
-    let host = '';
-    if (this.get('fastboot.isFastBoot')) {
-      let headers = this.get('fastboot.request.headers');
-      host = headers.get('x-ccs-host');
-    }
-    else {
-      host = window.location.host
-    }
-    
-    let base = ENV.CCSServer;
-    if (ENV.environment === 'development') {
-      host = "ray-dev-local-reflect.cablecast.tv";
-    }
+    let api = this.get('api');
 
     let site = '1';
-    if (params.siteId) {
-      site = params.siteId;
+    if (params.site) {
+      site = params.site;
     }
+    api.set('site', site);
+    this.set('api.site', site);
 
-    let result = await fetch(`${base}/api/publicsitedata?host=${host}&siteId=${site}`);
+    let result = await api.fetch(`api/publicsitedata`);
     let json = await result.json();
-    
     return json;
   }
 

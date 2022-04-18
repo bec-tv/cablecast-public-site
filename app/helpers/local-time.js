@@ -1,5 +1,5 @@
 import { helper as buildHelper } from '@ember/component/helper';
 
 export default buildHelper(function (utcTime) {
-  return new Date(utcTime + 'Z');
+  return new Date(utcTime);
 });

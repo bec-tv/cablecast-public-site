@@ -1,8 +1,6 @@
 import classic from 'ember-classic-decorator';
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
-import fetch from 'fetch';
-import ENV from 'cablecast-public-site/config/environment';
 
 @classic
 export default class ShowRoute extends Route {
@@ -10,12 +8,14 @@ export default class ShowRoute extends Route {
 
   @service fastboot;
 
+  @service api;
+
   setHeadData(show) {
     let data = {
       type: 'video.episode',
       card: 'summary_large_image',
       description: show.description || show.title,
-      image: show.thumbnailUrl
+      image: show.thumbnail
     };
     let headData = this.headData;
     headData.set('socialMedia', data);
@@ -44,20 +44,8 @@ export default class ShowRoute extends Route {
   }
 
   async model(params) {
-    let app = this.modelFor('application');
-    let host = app.host;
-    let site = app.siteId;
-
-    let base = ENV.CCSServer;
-    if (ENV.environment === 'development') {
-      host = "ray-dev-local-reflect.cablecast.tv";
-    }
-
-    if (site === undefined) {
-      site = 1;
-    }
-
-    let result = await fetch(`${base}/api/publicsitedata/shows/${params.id}?host=${host}&siteId=${site}`);
+    let api = this.get('api');
+    let result = await api.fetch(`api/publicsitedata/shows/${params.id}`);
     let json = await result.json();
 
     return json;
