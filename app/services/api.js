@@ -22,7 +22,7 @@ export default class ApiService extends Service {
         if (this.get('fastboot.isFastBoot')) {
             base = "http://127.0.0.1:55001";
         } else {
-            base = window.location.host;
+            base = ''; // We already start with a forward slash. That should work for the browser
         }
 
         if (ENV.PROXY) {
