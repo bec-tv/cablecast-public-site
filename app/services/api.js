@@ -21,6 +21,8 @@ export default class ApiService extends Service {
         let base = '/';
         if (this.get('fastboot.isFastBoot')) {
             base = "http://127.0.0.1:55001";
+        } else {
+            base = window.location.host;
         }
 
         if (ENV.PROXY) {
