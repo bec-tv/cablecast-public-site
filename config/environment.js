@@ -71,11 +71,9 @@ module.exports = function (environment) {
     ENV.PROXY = proxy;
   }
 
-  // We may still need the this in Cablecast, but for cloud deployments we do not
-
-  // if (environment === 'production') {
-  //   ENV.rootURL = '/CablecastPublicSite/';
-  // }
+  if (ENV.CC_LOCAL && environment === 'production') {
+    ENV.rootURL = '/CablecastPublicSite/';
+  }
 
   return ENV;
 };
