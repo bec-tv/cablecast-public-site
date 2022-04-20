@@ -9,6 +9,8 @@ export default class WatchNowRoute extends Route {
   @service api;
 
   async model() {
+    let api = this.get('api');
+    let model = this.modelFor('application');
     let currentDay = (new Date()).toISOString();
     let result = await api.fetch(`api/publicsitedata/schedule`, {
       currentDay: currentDay

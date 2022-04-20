@@ -28,7 +28,7 @@ export default class ApiService extends Service {
         if (ENV.PROXY) {
             base = ENV.PROXY;
         }
-        params.site = this.get('site');
+
         let query = this.generateQueryString(params);
         return fetch(`${base}/cablecast${endpoint}${query}`)
     }
@@ -44,11 +44,11 @@ export default class ApiService extends Service {
         }
 
         let base = ENV.CCSServer;
-        if (ENV.ENV.environment === 'development') {
+        if (ENV.environment === 'development') {
             host = "ray-dev-local-reflect.cablecast.tv";
         }
         params.host = host;
-        params.site = site;
+        params.site = this.site;
         let query = this.generateQueryString(params);
         return fetch(`${base}/${endpoint}${query}`)
     }

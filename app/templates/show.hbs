@@ -114,9 +114,9 @@
           {{! template-lint-disable no-triple-curlies }}
           {{{this.model.embedCode}}}
         </div>
-      {{else if this.model.thumbnail}}
+      {{else if this.model.thumbnailUrl}}
         <div class="embed-responsive embed-responsive-16by9">
-          <img src={{this.model.thumbnail}} class="img-responsive" />
+          <img src={{this.model.thumbnailUrl}} class="img-responsive" />
         </div>
       {{/if}}
     </div>
