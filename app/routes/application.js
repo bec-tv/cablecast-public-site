@@ -105,8 +105,8 @@ export default class ApplicationRoute extends Route {
     if (params.site) {
       site = params.site;
     }
+
     api.set('site', site);
-    this.set('api.site', site);
 
     let result = await api.fetch(`api/publicsitedata`);
     let json = await result.json();
