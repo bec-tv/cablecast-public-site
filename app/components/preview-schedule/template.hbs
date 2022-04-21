@@ -3,7 +3,7 @@
     Schedule
   </h3>
   <div class="schedule">
-    {{#each @runs as |run|}}
+    {{#each this.filteredRuns as |run|}}
       <div class="schedule-row clearfix">
         <div class="plaque">
           {{#if (eq run this.onAirRun)}}
