@@ -19,10 +19,11 @@ export default class PreviewSchedule extends Component {
   @computed('runs.[]')
   get filteredRuns() {
     let now = new Date();
-    let runs = this.runs.filter((run) => {
+    let runs = this.runs || [];
+    let filteredRuns = runs.filter((run) => {
       let end = new Date(run.endDateTime);
       return end >= now;
     });
-    return runs.slice(0, 8);
+    return filteredRuns.slice(0, 8);
   }
 }
