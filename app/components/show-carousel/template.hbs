@@ -8,7 +8,7 @@
   >
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      {{#each @shows as |item key|}}
+      {{#each this.trimmedShows as |item key|}}
         <li
           data-target="#carousel"
           data-slide-to={{key}}

@@ -24,7 +24,7 @@
   <div class="gallery-wrapper">
     {{#unless this.collapsed}}
       <div class="show-stub-container">
-        {{#each @gallery.shows as |show|}}
+        {{#each this.trimmedShows as |show|}}
           <ShowStub @show={{show}} />
         {{else}}
           <h2 class="gallery-no-shows-warning">

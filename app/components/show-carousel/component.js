@@ -1,5 +1,6 @@
 import classic from 'ember-classic-decorator';
 import { tagName } from '@ember-decorators/component';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import jQuery from 'jquery';
 import Component from '@ember/component';
@@ -13,5 +14,10 @@ export default class ShowCarousel extends Component {
   didInsertElement() {
     super.didInsertElement(...arguments);
     jQuery('#carousel').carousel('cycle');
+  }
+
+  @computed('shows.[]')
+  get trimmedShows() {
+    return this.get('shows').slice(0, 12);
   }
 }
