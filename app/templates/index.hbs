@@ -1,19 +1,33 @@
+{{#if this.model.slideShow}}
 <div>
   <div class="show-player clearfix">
-    <div class="col-sm-6 col-lg-8 u-no-padding">
-      <div class="embed-responsive embed-responsive-16by9">
-        {{#if this.model.slideShow.length}}
-          <ShowCarousel @shows={{this.model.slideShow}} />
-        {{/if}}
+    {{#if this.showSchedule}}
+      <div class="col-sm-6 col-lg-8 u-no-padding">
+        <div class="embed-responsive embed-responsive-16by9">
+          {{#if this.model.slideShow}}
+            <ShowCarousel @shows={{this.model.slideShow}} />
+          {{/if}}
+        </div>
       </div>
-    </div>
+    {{else}}
+      <div class="col-sm-push-6 col-sm-6 col-lg-push-2 col-lg-8 u-no-padding">
+        <div class="embed-responsive embed-responsive-16by9">
+          {{#if this.model.slideShow}}
+            <ShowCarousel @shows={{this.model.slideShow}} />
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+    {{#if this.showSchedule}}
     <div class="col-sm-6 col-lg-4 u-no-padding">
       <div class="additional-info u-truncate-text">
         <PreviewSchedule @runs={{this.model.scheduleItems}}/>
       </div>
     </div>
+    {{/if}}
   </div>
 </div>
+{{/if}}
 {{#each this.model.galleries as |gallery|}}
   {{#if (gt gallery.shows.length 0)}}
     <ShowsGallery @gallery={{gallery}} />

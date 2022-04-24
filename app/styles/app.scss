@@ -205,14 +205,15 @@ body {
   text-transform: capitalize;
 }
 
-.gallery-title-header{
+.gallery-title-header {
+  font-size: 1.5em;
   margin-bottom: 20px;
   cursor:pointer;
   &:hover{
     text-decoration:underline;
   }
   @include media-query($xs){
-    font-size:1.8em;
+    font-size:1.2em;
   }
 }
 

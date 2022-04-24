@@ -11,18 +11,8 @@ export default class IndexController extends Controller {
   @alias('application.model.channel')
   channel;
 
-  @computed('model.{carouselShows.[],defaultShows.[]}')
-  get carouselShows() {
-    return [];
-    if (this.get('model.carouselShows.length')) {
-      return this.get('model.carouselShows');
-    }
-    return this.get('model.defaultShows');
-  }
-
-  @computed('channel.publicSite.siteGalleries.@each.position')
-  get siteGalleries() {
-    return [];
-    return this.get('channel.publicSite.siteGalleries').sortBy('position');
+  @computed('model.scheduleItems.[]')
+  get showSchedule() {
+    return this.get('model.scheduleItems') && this.get('model.scheduleItems.length') > 0;
   }
 }
