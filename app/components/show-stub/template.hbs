@@ -1,7 +1,7 @@
 <div class="show-stub" ...attributes>
   {{#if @show.thumbnailUrl}}
     <LinkTo @route="show" @model={{@show.showId}} class="thumbnail-responsive">
-      <img src={{@show.thumbnailUrl}} class="img-response" />
+      <img src="{{@show.thumbnailUrl}}?d=256x144" class="img-response" />
     </LinkTo>
   {{else}}
     <div class="thumbnail-responsive"></div>
