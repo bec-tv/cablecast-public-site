@@ -5,7 +5,7 @@ export default {
   name: 'init-pdfjs-workersrc',
   initialize: function () {
     if (typeof PDFJS !== 'undefined') {
-      PDFJS.workerSrc = ENV.rootURL + 'assets/pdf.worker.js';
+      PDFJS.workerSrc = ENV.rootURL + 'resources/pdf.worker.js';
     }
   },
 };
