@@ -38,19 +38,19 @@ module.exports = function (defaults) {
   let PDFJS = new Funnel('node_modules/pdfjs-dist/build', {
     srcDir: '/',
     include: ['pdf.js', 'pdf.worker.js'],
-    destDir: '/assets',
+    destDir: '/resources',
   });
 
   let PDFJSExtras = new Funnel('node_modules/pdfjs-dist/web', {
     srcDir: '/',
     include: ['compatibility.js'],
-    destDir: '/assets',
+    destDir: '/resources',
   });
 
   let PDFJSCmaps = new Funnel('node_modules/pdfjs-dist/cmaps', {
     srcDir: '/',
     include: ['**/*.bcmap'],
-    destDir: '/assets/web/cmaps',
+    destDir: '/resources/web/cmaps',
   });
 
   app.import('node_modules/pdfjs-dist/build/pdf.js', {
