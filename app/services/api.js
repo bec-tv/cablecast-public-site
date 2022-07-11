@@ -28,7 +28,11 @@ export default class ApiService extends Service {
         if (ENV.PROXY) {
             base = ENV.PROXY;
         }
-        params.site = this.site;
+
+        //If we have a channel, don't pass along the site becasue it's probably not valid
+        if (!params.channel) {
+            params.site = this.site;
+        }
         let query = this.generateQueryString(params);
         return fetch(`${base}/cablecast${endpoint}${query}`)
     }

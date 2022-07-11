@@ -106,6 +106,15 @@ export default class ApplicationRoute extends Route {
       site = params.site;
     }
 
+    // Look up a site by channel
+    if (ENV.CC_LOCAL && params.channel && !params.site) {
+      var siteForChannel = await api.fetch('api/publicsitedata', {channel: params.channel});
+      var siteForChannelJson = await siteForChannel.json();
+      site = siteForChannelJson.id;
+      api.set('site', site);
+      return siteForChannelJson;
+    }
+
     api.set('site', site);
 
     let result = await api.fetch(`api/publicsitedata`);
