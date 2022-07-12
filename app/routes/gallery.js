@@ -16,8 +16,8 @@ export default class GalleryRoute extends Route {
 
   async model(params) {
     let offset = params.page - 1;
-
-    let result = await api.fetch(`$api/publicsitedata/galleries/${params.id}`, {offset: offset});
+    let api = this.get('api');
+    let result = await api.fetch(`api/publicsitedata/galleries/${params.id}`, {offset: offset});
     let json = await result.json();
     
     return json;
