@@ -1,5 +1,5 @@
 {{page-title this.model.title}}
-{{#if this.embededPdf}}
+{{#if (or embediFrame this.embededPdf)}}
   <div class="row show-page">
     <div class="col-sm-12">
       <h2 class="show-page-header">
@@ -102,8 +102,13 @@
       </div>
     </div>
     <div class="col-sm-7 col-sm-pull-5">
-      <PdfViewer @url={{this.embededPdf.url}} @class="hidden-xs" />
-      {{!pdf-js pdf=documentUrl toolbarComponent=null}}
+      {{#if embededPdf}}
+        <PdfViewer @url={{this.embededPdf.url}} @class="hidden-xs" />
+        {{!pdf-js pdf=documentUrl toolbarComponent=null}}
+      {{/if}}
+      {{#if embediFrame}}
+         <iframe class="pdf-wrapper" src={{embediFrame.url}}></iframe>
+      {{/if}}
     </div>
   </div>
 {{else}}
