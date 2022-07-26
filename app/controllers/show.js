@@ -20,19 +20,6 @@ export default class ShowController extends Controller {
   @alias('application.channel')
   currentChannelId;
 
-  // TODO - fix later
-  /* eslint-disable getter-return */
-  @computed('model.show.vods.firstObject.{chapters.@each.deleted,chaptersPublished}')
-  get vodChapters() {
-    return [];
-    if (!this.get('model.show.vods.firstObject.chaptersPublished')) {
-      return [];
-    }
-    let chapters = this.get('model.show.vods.firstObject.chapters') || [];
-    return chapters.rejectBy('deleted').rejectBy('quickAdded').sortBy('offset');
-  }
-  /* eslint-enable getter-return */
-
   queryParams = ['seekto'];
   seekto = null;
 

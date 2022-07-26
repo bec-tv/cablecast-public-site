@@ -133,48 +133,41 @@
     </div>
   </div>
   <div class="row show-page show-page-last-row">
-    <div class="col-sm-6">
-      {{#if (gt this.model.fieldDisplays.length 0)}}
-      <h3 class="show-page-show-details-header">
-        Show Details
-      </h3>
-      <ShowDetails @fieldDisplays={{this.model.fieldDisplays}} />
-      {{/if}}
-    </div>
- 
-    
-      {{#if
-        (and
-          this.model.embedCode
-          this.model.chapters
-        )
-      }}
+    {{#if (gt this.model.fieldDisplays.length 0)}}
       <div class="col-sm-6">
-        <h3 class="show-details-chapters-header">
-          Chapters
+        <h3 class="show-page-show-details-header">
+          Show Details
         </h3>
-        <VodChapters
-          @chapters={{this.model.chapters}}
-          @seekto={{this.seekto}}
-          @setSeekTo={{action "setSeekTo"}}
-        />
-        <hr>
+        <ShowDetails @fieldDisplays={{this.model.fieldDisplays}} />
       </div>
-      {{/if}}
-
-    {{#if (gt this.model.upcomingRuns.length 0)}}
+    {{/if}}
+    {{#if (and this.model.embedCode this.model.chapters)}}
+    <div class="col-sm-6">
+      <h3 class="show-details-chapters-header">
+        Chapters
+      </h3>
+      <VodChapters
+        @chapters={{this.model.chapters}}
+        @seekto={{this.seekto}}
+        @setSeekTo={{action "setSeekTo"}}
+      />
+      <hr>
+    </div>
+    {{/if}}
+    
     <div class="col-sm-6">
       <h3 class="show-page-airtimes-header">
         Upcoming air times
       </h3>
-      {{#each this.model.upcomingRuns as |run|}}
-        <div class="show-future-runs-container">
-          {{moment-calendar (local-time run.runDateTime)}}
-        </div>
-      {{else}}
-        There are currently no upcoming air times.
-      {{/each}}
+        {{#if (gt this.model.upcomingRuns.length 0)}}
+          {{#each this.model.upcomingRuns as |run|}}
+            <div class="show-future-runs-container">
+              {{moment-calendar (local-time run.runDateTime)}}
+            </div>
+          {{/each}}
+        {{else}}
+          There are currently no upcoming air times.
+        {{/if}}
     </div>
-    {{/if}}
   </div>
 {{/if}}
