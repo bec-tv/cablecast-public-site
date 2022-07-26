@@ -41,9 +41,9 @@ export default class ShowController extends Controller {
     let iframeDisplays = this.get('model.fieldDisplays').sortBy('order').filterBy('widget', 'iframe');
     for (let i = 0; i < iframeDisplays.length; i++) {
       let iframeDisplay = iframeDisplays[i];
-      if (iframeDisplay.link) {
+      if (iframeDisplay.value) {
           return {
-            url: iframeDisplay.link
+            url: iframeDisplay.value
           };
       }
     }
