@@ -23,6 +23,19 @@ export default class ShowController extends Controller {
   queryParams = ['seekto'];
   seekto = null;
 
+  @computed ('model.fieldDisplays.@each.{widget,value}', 'store')
+  get embediFrame() {
+    let iframeDisplays = this.get('model.fieldDisplays').sortBy('order').filterBy('widget', 'iframe');
+    for (let i = 0; i < iframeDisplays.length; i++) {
+      let iframeDisplay = iframeDisplays[i];
+      if (iframeDisplay.value) {
+          return {
+            url: iframeDisplay.value
+          };
+      }
+    }
+  }
+
   //TODO - fix this code later
   /* eslint-disable getter-return */
   @computed('model.fieldDisplays.@each.{widget,value}', 'store')

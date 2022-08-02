@@ -26,6 +26,10 @@ export default class VodChapters extends Component {
       this.seekTo(this.seekto);
     }
 
+    if (event.data.message === 'seek' && event.data.seconds >= 0) {
+      this.seekTo(event.data.seconds);
+    }
+
     if (event.data.message === 'timeupdate') {
       var chapters = this.chapters.toArray();
       var activeChapter = null;
