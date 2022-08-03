@@ -11,97 +11,98 @@
       </div>
     </div>
   </div>
-  <div class="row show-page show-page-last-row">
-    <div class="col-sm-5 col-sm-push-7">
-      <div class="row show-page show-page-video-col">
-        {{! VOD or Image}}
-        <div class="col-sm-12">
-          {{#if this.model.embedCode}}
-            <div class="embed-responsive embed-responsive-16by9">
-              {{! template-lint-disable no-triple-curlies }}
-              {{{this.model.embedCode}}}
-            </div>
-          {{else}}
-            <div class="embed-responsive embed-responsive-16by9">
-              <img src={{this.model.thumbnailUrl}} class="img-responsive" />
-            </div>
-          {{/if}}
-          <div class="show-page-social-links visible-xs-block">
-            <FbShareButton @adaptive={{false}}>
-              Share
-            </FbShareButton>
-            <TwitterShareButton @adaptive={{false}}>
-              Tweet
-            </TwitterShareButton>
-          </div>
+  
+   <div class="row show-page"> {{!-- show-page-video-col"> --}}
+    {{! VOD or Image}}
+    <div class="col-sm-8">
+      {{#if this.model.embedCode}}
+        <div class="embed-responsive embed-responsive-16by9">
+          {{! template-lint-disable no-triple-curlies }}
+          {{{this.model.embedCode}}}
         </div>
-        {{!Chapters / details Tabs}}
-        <div class="col-sm-12">
-          <div class="show-page-section-btns-wrapper clearfix">
-            {{#if this.model.chapters}}
-              <button
-                type="button"
-                class="btn show-page-section-btn pull-left
-                  {{if (eq this.activeTab "details") "btn-primary" "btn-default"}}"
-                {{action "showDetails"}}
-              >
-                Show Details
-              </button>
-              <button
-                type="button"
-                class="btn show-page-section-btn pull-right
-                  {{if (eq this.activeTab "chapters") "btn-primary" "btn-default"}}"
-                {{action "showChapters"}}
-              >
-                Chapters
-              </button>
-              <a
-                href={{this.embededPdf.url}}
-                class="btn show-page-section-btn btn-default visible-xs-inline-block"
-              >
-                Open
-                {{this.embededPdf.fieldDisplay.label}}
-                {{fa-icon "external-link"}}
-              </a>
-            {{else}}
-              <h3 class="show-page-show-details-header">
-                Show Details
-              </h3>
-            {{/if}}
-          </div>
+      {{else}}
+        <div class="embed-responsive embed-responsive-16by9">
+          <img src={{this.model.thumbnailUrl}} class="img-responsive" />
         </div>
-        <div class="col-sm-12">
-          {{! Show Details / Chapters}}
-          {{#if (eq this.activeTab "details")}}
-            <ShowDetails
-              @fieldDisplays={{this.model.fieldDisplays}}
-              {{!-- @show={{this.model}}
-              @producer={{this.model.producer}}
-              @reels={{this.reels}}
-              @runs={{this.runs}}
-              @currentChannelId={{this.currentChannelId}} --}}
-            />
-            <h3 class="show-page-airtimes-header">
-              Upcoming air times
-            </h3>
-            {{#each this.runs as |run|}}
-              <div class="show-future-runs-container">
-                {{moment-calendar (local-time run.runDateTime)}}
-              </div>
-            {{else}}
-              There are currently no upcoming air times.
-            {{/each}}
-          {{else}}
-            <VodChapters
-              @chapters={{this.model.chapters}}
-              @seekto={{this.seekto}}
-              @setSeekTo={{action "setSeekTo"}}
-            />
-          {{/if}}
-        </div>
+      {{/if}}
+      <div class="show-page-social-links visible-xs-block">
+        <FbShareButton @adaptive={{false}}>
+          Share
+        </FbShareButton>
+        <TwitterShareButton @adaptive={{false}}>
+          Tweet
+        </TwitterShareButton>
       </div>
     </div>
-    <div class="col-sm-7 col-sm-pull-5">
+    {{!Chapters / details Tabs}}
+    <div class="col-sm-4">
+      <div class="show-page-section-btns-wrapper clearfix">
+        {{#if this.model.chapters}}
+          <button
+            type="button"
+            class="btn show-page-section-btn pull-left
+              {{if (eq this.activeTab "details") "btn-primary" "btn-default"}}"
+            {{action "showDetails"}}
+          >
+            Show Details
+          </button>
+          <button
+            type="button"
+            class="btn show-page-section-btn pull-right
+              {{if (eq this.activeTab "chapters") "btn-primary" "btn-default"}}"
+            {{action "showChapters"}}
+          >
+            Chapters
+          </button>
+          <a
+            href={{this.embededPdf.url}}
+            class="btn show-page-section-btn btn-default visible-xs-inline-block"
+          >
+            Open
+            {{this.embededPdf.fieldDisplay.label}}
+            {{fa-icon "external-link"}}
+          </a>
+        {{else}}
+          <h3 class="show-page-show-details-header">
+            Show Details
+          </h3>
+        {{/if}}
+      </div>
+    </div>
+    <div class="col-sm-4">
+      {{! Show Details / Chapters}}
+      {{#if (eq this.activeTab "details")}}
+        <ShowDetails
+          @fieldDisplays={{this.model.fieldDisplays}}
+          {{!-- @show={{this.model}}
+          @producer={{this.model.producer}}
+          @reels={{this.reels}}
+          @runs={{this.runs}}
+          @currentChannelId={{this.currentChannelId}} --}}
+        />
+        <h3 class="show-page-airtimes-header">
+          Upcoming air times
+        </h3>
+        {{#each this.runs as |run|}}
+          <div class="show-future-runs-container">
+            {{moment-calendar (local-time run.runDateTime)}}
+          </div>
+        {{else}}
+          There are currently no upcoming air times.
+        {{/each}}
+      {{else}}
+        <VodChapters
+          @chapters={{this.model.chapters}}
+          @seekto={{this.seekto}}
+          @setSeekTo={{action "setSeekTo"}}
+        />
+      {{/if}}
+    </div>
+  </div>
+ 
+
+  <div class="row show-page show-page-last-row">
+    <div class="col-sm-12">
       {{#if embededPdf}}
         <PdfViewer @url={{this.embededPdf.url}} @class="hidden-xs" />
         {{!pdf-js pdf=documentUrl toolbarComponent=null}}
@@ -111,6 +112,7 @@
       {{/if}}
     </div>
   </div>
+  
 {{else}}
   <div class="row show-page">
     <div class="col-sm-12">
