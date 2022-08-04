@@ -12,7 +12,7 @@
     </div>
   </div>
   
-   <div class="row show-page"> {{!-- show-page-video-col"> --}}
+  <div class="row show-page"> {{!-- show-page-video-col --}}
     {{! VOD or Image}}
     <div class="col-sm-8">
       {{#if this.model.embedCode}}
@@ -69,8 +69,8 @@
         {{/if}}
       </div>
     </div>
+    {{! Show Details / Chapters}}
     <div class="col-sm-4">
-      {{! Show Details / Chapters}}
       {{#if (eq this.activeTab "details")}}
         <ShowDetails
           @fieldDisplays={{this.model.fieldDisplays}}
