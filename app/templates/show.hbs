@@ -84,7 +84,7 @@
             <h3 class="show-page-airtimes-header">
               Upcoming air times
             </h3>
-            {{#each this.runs as |run|}}
+            {{#each this.model.upcomingRuns as |run|}}
               <div class="show-future-runs-container">
                 {{moment-calendar (local-time run.runDateTime)}}
               </div>
@@ -164,15 +164,13 @@
       <h3 class="show-page-airtimes-header">
         Upcoming air times
       </h3>
-        {{#if (gt this.model.upcomingRuns.length 0)}}
-          {{#each this.model.upcomingRuns as |run|}}
-            <div class="show-future-runs-container">
-              {{moment-calendar (local-time run.runDateTime)}}
-            </div>
-          {{/each}}
+        {{#each this.model.upcomingRuns as |run|}}
+          <div class="show-future-runs-container">
+            {{moment-calendar (local-time run.runDateTime)}}
+          </div>
         {{else}}
           There are currently no upcoming air times.
-        {{/if}}
+        {{/each}}
     </div>
   </div>
 {{/if}}
