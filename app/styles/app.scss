@@ -291,7 +291,7 @@ body {
 
 .show-page-video-col {
   @media (min-width: $xs) {
-    height: calc(100vh - 300px);
+    // height: calc(100vh - 300px);
   }
 }
 
@@ -504,13 +504,13 @@ body {
 .vod-chapters {
   min-height: 300px;
   @media (min-width: $xs) {
-    max-height: 350px;
+    max-height: 425px;
     overflow: auto;
   }
 }
 .show-page-video-col .vod-chapters {
   @media (min-width: $xs) {
-    max-height: calc(100vh - 620px);
+    // max-height: calc(100vh - 620px);
   }
 }
 
@@ -545,8 +545,8 @@ body {
 .pdfViewerContainer {
   width: 100%;
   overflow: scroll;
-  min-height: 650px;
-  max-height: calc(100vh - 300px);
+  min-height: 750px;
+  // max-height: calc(100vh - 300px);
   margin-bottom: 10px;
   border: 1px solid #ccc;
 }
