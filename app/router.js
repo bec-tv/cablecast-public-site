@@ -11,6 +11,7 @@ Router.map(function () {
   this.route('schedule');
   this.route('show', { path: 'show/:id' });
   this.route('watch-now');
+  this.route('legacy-watch', {path: 'watch/*'});
   this.route('search');
   this.route('gallery', { path: 'gallery/:id' });
 });

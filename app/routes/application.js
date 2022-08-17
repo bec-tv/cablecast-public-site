@@ -105,12 +105,11 @@ export default class ApplicationRoute extends Route {
     if (params.site) {
       site = params.site;
     }
-
     // Look up a site by channel
     if (ENV.CC_LOCAL && params.channel && !params.site) {
       var siteForChannel = await api.fetch('api/publicsitedata', {channel: params.channel});
       var siteForChannelJson = await siteForChannel.json();
-      site = siteForChannelJson.id;
+      site = siteForChannelJson.siteId;
       api.set('site', site);
       return siteForChannelJson;
     }
@@ -150,8 +149,11 @@ export default class ApplicationRoute extends Route {
     }
   }
 
-  // setupController(controller, model) {
-  //   super.setupController(...arguments);
-  //   controller.set('channel', model.channel.id);
-  // }
+  setupController(controller, model) {
+    super.setupController(...arguments);
+    if (!controller.get('site')) {
+      controller.set('site', model.siteId);
+      controller.set('channel', null);
+    }
+  }
 }
