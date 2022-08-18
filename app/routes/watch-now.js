@@ -16,9 +16,10 @@ export default class WatchNowRoute extends Route {
       currentDay: currentDay
     });
     let json = await result.json();
-    
+
     return {
-      scheduleItems: json,
+      title: model.title,
+      scheduleItems: json.scheduleItems,
       embedCode: model.liveEmbedCode
     };
   }
