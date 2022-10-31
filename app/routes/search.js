@@ -2,6 +2,8 @@ import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
+const PAGE_SIZE=50;
+
 @classic
 export default class SearchRoute extends Route {
   @service api;
@@ -16,13 +18,18 @@ export default class SearchRoute extends Route {
   };
 
   async model(params) {
-    let offset = params.page - 1;
+    let page = params.page ?? 1;
+    let offset = 0;
+    if (page > 1) {
+      offset = (page - 1) * PAGE_SIZE;
+    }
     let search = params.query;
     let api = this.get('api');
     
     let result = await api.fetch(`api/publicsitedata/shows`, {
       search: search,
-      offset: offset
+      offset: offset,
+      page_size: PAGE_SIZE
     });
     let json = await result.json();
     return json;
