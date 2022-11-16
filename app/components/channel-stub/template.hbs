@@ -1,5 +1,5 @@
 <div class="channel-stub" ...attributes>
-  <LinkTo @route="index" @query={{hash site=otherSite.siteId}} class="channel-stub-link">
+  <a href="/CablecastPublicSite?site={{otherSite.siteId}}" class="channel-stub-link">
     <p class="channel-stub-title">
       {{otherSite.title}}
     </p>
@@ -15,5 +15,5 @@
       {{/if}}
     </div>
     {{!--<p>{{{otherSite.pageDescription}}}</p>--}}
-  </LinkTo>
+  </a>
 </div>
