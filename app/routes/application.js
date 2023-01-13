@@ -125,11 +125,11 @@ export default class ApplicationRoute extends Route {
     // let publicSite = model.channel.get('publicSite');
     // this.site.publicSite = publicSite;
     this.setHeadData(model);
-    // this._setupMetrics(publicSite);
+    this._setupMetrics(model);
   }
 
   _setupMetrics(site) {
-    if (site.googleAnalyticsId) {
+    if (!this.fastboot.isFastBoot && site.googleAnalyticsId) {
       let metrics = this.metrics;
       let id = site.googleAnalyticsId;
 
