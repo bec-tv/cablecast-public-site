@@ -23,31 +23,42 @@ export default class ShowController extends Controller {
   queryParams = ['seekto'];
   seekto = null;
 
-  @computed ('model.fieldDisplays.@each.{widget,value}', 'store')
+  @computed('model.fieldDisplays.@each.{widget,value}', 'store')
   get embediFrame() {
-    let iframeDisplays = this.get('model.fieldDisplays').sortBy('order').filterBy('widget', 'iframe');
+    let fieldDisplays = this.get('model.fieldDisplays') || [];
+    let iframeDisplays = fieldDisplays
+      .sort((a, b) => {
+        return a.order - b.order;
+      })
+      .filter((field) => {
+        return field.widget === 'iframe';
+      });
     for (let i = 0; i < iframeDisplays.length; i++) {
       let iframeDisplay = iframeDisplays[i];
       if (iframeDisplay.value) {
-          return {
-            url: iframeDisplay.value
-          };
+        return {
+          url: iframeDisplay.value,
+        };
       }
     }
+    return null;
   }
 
-  //TODO - fix this code later
-  /* eslint-disable getter-return */
   @computed('model.fieldDisplays.@each.{widget,value}', 'store')
   get embededPdf() {
-    let pdfDisplays = this.get('model.fieldDisplays')
-      .sortBy('order')
-      .filterBy('widget', 'pdf');
+    let fieldDisplays = this.get('model.fieldDisplays') || [];
+    let pdfDisplays = fieldDisplays
+      .sort((a, b) => {
+        return a.order - b.order;
+      })
+      .filter((field) => {
+        return field.widget === 'pdf';
+      });
 
     if (pdfDisplays.length) {
       return {
-        url: pdfDisplays[pdfDisplays.length -1].value,
-        fieldDisplay: pdfDisplays[pdfDisplays.length -1]
+        url: pdfDisplays[pdfDisplays.length - 1].value,
+        fieldDisplay: pdfDisplays[pdfDisplays.length - 1],
       };
     } else {
       return null;

@@ -23,7 +23,7 @@ export default class ShowRoute extends Route {
     this.appendJsonLD(data, show);
   }
 
-  appendJsonLD(data, show) {
+  appendJsonLD(data) {
     let jsonLD = {
       '@context': 'http://schema.org',
       '@type': 'TVClip',
