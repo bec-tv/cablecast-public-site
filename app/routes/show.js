@@ -15,7 +15,7 @@ export default class ShowRoute extends Route {
       type: 'video.episode',
       card: 'summary_large_image',
       description: show.description || show.title,
-      image: show.thumbnail
+      image: show.thumbnailUrl,
     };
     let headData = this.headData;
     headData.set('socialMedia', data);
@@ -23,7 +23,7 @@ export default class ShowRoute extends Route {
     this.appendJsonLD(data, show);
   }
 
-  appendJsonLD(data, show) {
+  appendJsonLD(data) {
     let jsonLD = {
       '@context': 'http://schema.org',
       '@type': 'TVClip',
