@@ -11,11 +11,12 @@ export default class ShowRoute extends Route {
   @service api;
 
   setHeadData(show) {
+    let config = this.modelFor('application');
     let data = {
       type: 'video.episode',
       card: 'summary_large_image',
       description: show.description || show.title,
-      image: show.thumbnailUrl,
+      image: `${config.siteBaseUrl}${show.thumbnailUrl}`,
     };
     let headData = this.headData;
     headData.set('socialMedia', data);
