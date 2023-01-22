@@ -16,6 +16,7 @@ export default class ShowRoute extends Route {
       type: 'video.episode',
       card: 'summary_large_image',
       description: show.description || show.title,
+      title: show.title,
       image: `${config.siteBaseUrl}${show.thumbnailUrl}`,
     };
     let headData = this.headData;

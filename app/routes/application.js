@@ -92,8 +92,8 @@ export default class ApplicationRoute extends Route {
 
     // this.appendJsonLD(publicSite);
 
-    // let url = this.getCanonicalUrl();
-    // headData.set('url', encodeURI(url));
+    let url = this.getCanonicalUrl();
+    headData.set('url', encodeURI(url));
     // headData.set('channelID', channel.get('id'));
     // headData.set('rootURL', encodeURI(ENV.rootURL));
   }
@@ -107,7 +107,9 @@ export default class ApplicationRoute extends Route {
     }
     // Look up a site by channel
     if (ENV.CC_LOCAL && params.channel && !params.site) {
-      var siteForChannel = await api.fetch('api/publicsitedata', {channel: params.channel});
+      var siteForChannel = await api.fetch('api/publicsitedata', {
+        channel: params.channel,
+      });
       var siteForChannelJson = await siteForChannel.json();
       site = siteForChannelJson.siteId;
       api.set('site', site);
