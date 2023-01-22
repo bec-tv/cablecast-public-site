@@ -99,7 +99,7 @@ export default class ApplicationRoute extends Route {
   }
 
   async model(params) {
-    let api = this.get('api');
+    let api = this.api;
 
     let site = '1';
     if (params.site) {

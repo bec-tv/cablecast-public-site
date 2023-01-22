@@ -1,6 +1,7 @@
 import classic from 'ember-classic-decorator';
 import { action, computed } from '@ember/object';
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 
 @classic
 export default class ApplicationController extends Controller {
@@ -8,6 +9,9 @@ export default class ApplicationController extends Controller {
   site = null;
   channel = null;
   showOtherChannels = true;
+
+  @service
+  fastboot;
 
   @computed('model.channel.primaryLocation.id', 'model.projects')
   get projects() {
@@ -24,17 +28,6 @@ export default class ApplicationController extends Controller {
     return this.allChannels
       .filterBy('publicSite.includeInIndex', true)
       .sortBy('publicSite.siteName');
-  }
-
-  @computed('projects.[]')
-  get hasPodcasts() {
-    return false;
-    return (
-      this.projects.filter(function (project) {
-        // Test that a project has a name and is marked for podcasting.
-        return project.get('name') && project.get('podcast');
-      }).length > 0
-    );
   }
 
   @action

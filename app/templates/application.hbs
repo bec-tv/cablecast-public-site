@@ -1,5 +1,7 @@
 {{page-title this.model.title}}
-<HeadLayout />
+{{#if fastboot.isFastBoot }}
+  <HeadLayout />
+{{/if}}
 <NavMenu @siteConfig={{this.model}} @onSearch={{action "navSearch"}} />
 <div class="container-wrapper">
   <div class="container">

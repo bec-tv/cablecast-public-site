@@ -2,9 +2,6 @@
 
 module.exports = function (environment) {
   let ENV = {
-    'ember-cli-head': {
-      suppressBrowserRender: true,
-    },
     'ember-metrics': {
       includeAdapters: ['google-analytics', 'console-adapter'],
     },
@@ -17,7 +14,7 @@ module.exports = function (environment) {
     fastboot: {
       hostWhitelist: [/.+/],
     },
-    CC_LOCAL: process.env.CC_LOCAL === "TRUE",
+    CC_LOCAL: process.env.CC_LOCAL === 'TRUE',
     environment,
     rootURL: '/',
     modulePrefix: 'cablecast-public-site',
@@ -42,7 +39,7 @@ module.exports = function (environment) {
   };
 
   if (environment === 'development') {
-    ENV.CCSServer = "http://localhost:5000";
+    ENV.CCSServer = 'http://localhost:5000';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

@@ -39,7 +39,7 @@
     "ember-cli-dependency-lint": "^2.0.0",
     "ember-cli-deprecation-workflow": "^1.0.1",
     "ember-cli-fastboot": "3.3.0",
-    "ember-cli-head": "1.0.0",
+    "ember-cli-head": "2.0.0",
     "ember-cli-htmlbars": "^5.3.1",
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-mirage": "^2.0.1",
@@ -81,8 +81,8 @@
   },
   "dependencies": {
     "broccoli-funnel": "^1.1.0",
-    "fastboot-app-server": "^3.0.0",
     "ember-fetch": "^8.1.1",
+    "fastboot-app-server": "^3.0.0",
     "pdfjs-dist": "1.7.331"
   },
   "engines": {
