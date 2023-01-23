@@ -39,8 +39,9 @@ export default class ApplicationRoute extends Route {
     let fastboot = this.fastboot;
 
     if (fastboot.get('isFastBoot')) {
-      let protocol = fastboot.get('request.protocol');
-      let host = fastboot.get('request.host');
+      let headers = fastboot.request.headers;
+      let protocol = headers.get('X-Forwarded-Proto');
+      let host = headers.get('X-Forwarded-Host');
       let path = fastboot.get('request.path');
       url = `${protocol}//${host}${path}`;
     } else {
