@@ -9,6 +9,10 @@ app.use(function (req, res, next) {
   if (xForwardedHost && xForwardedHost.length) {
     req.headers['host'] = xForwardedHost;
   }
+  const xCCSHost = req.headers['x-ccs-host'];
+  if (xCCSHost && xCCSHost.length) {
+    req.headers['host'] = xCCSHost;
+  }
   const xForwardedProto = req.headers['x-forwarded-proto'];
   if (xForwardedProto && xForwardedProto.length) {
     req.headers['protocol'] = xForwardedProto;
