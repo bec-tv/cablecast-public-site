@@ -63,10 +63,14 @@ export default class VodChapters extends Component {
       return;
     }
     this.set('activeChapter', chapter);
-    var element = this.element.querySelector(
-      `[data-chapter="${chapter.id}"]`
-    );
+    var element = this.element.querySelector(`[data-chapter="${chapter.id}"]`);
+    if (element == null) {
+      return;
+    }
     var componentElement = jQuery(this.element);
+    if (componentElement == null) {
+      return;
+    }
     componentElement.animate({
       scrollTop:
         jQuery(element).offset().top -
