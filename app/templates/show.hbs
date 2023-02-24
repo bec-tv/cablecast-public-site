@@ -102,12 +102,10 @@
       </div>
     </div>
     <div class="col-sm-7 col-sm-pull-5">
-      {{#if embededPdf}}
-        <PdfViewer @url={{this.embededPdf.url}} @class="hidden-xs" />
-        {{!pdf-js pdf=documentUrl toolbarComponent=null}}
-      {{/if}}
       {{#if embediFrame}}
-         <iframe class="pdf-wrapper" src={{embediFrame.url}}></iframe>
+         <iframe class="pdf-wrapper hidden-xs" src={{embediFrame.url}}></iframe>
+      {{else if embededPdf}}
+        <PdfViewer @url={{this.embededPdf.url}} @class="hidden-xs" />
       {{/if}}
     </div>
   </div>
