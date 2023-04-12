@@ -9,10 +9,7 @@ import ENV from 'cablecast-public-site/config/environment';
 export default class ChannelStub extends Component {
   @computed('otherSite.logo', 'otherSite.squareLogo')
   get logo() {
-    return (
-      this.otherSite.logo ||
-      this.otherSite.squareLogo
-    );
+    return this.otherSite.logo || this.otherSite.squareLogo;
   }
 
   @computed
