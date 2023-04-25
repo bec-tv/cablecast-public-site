@@ -135,20 +135,36 @@ export default class ApplicationRoute extends Route {
     if (!this.fastboot.isFastBoot && site.googleAnalyticsId) {
       let metrics = this.metrics;
       let id = site.googleAnalyticsId;
-
-      metrics.activateAdapters([
-        {
-          name: 'GoogleAnalytics',
-          environments: ['production'],
-          config: {
-            id,
+      let firstChar = site.googleAnalyticsId.charAt(0);
+      if (firstChar === 'G' || firstChar === 'g') {
+        metrics.activateAdapters([
+          {
+            name: 'GoogleAnalyticsFour',
+            environments: ['production'],
+            config: {
+              id,
+            },
           },
-        },
-        {
-          name: 'ConsoleAdapter',
-          environments: ['development'],
-        },
-      ]);
+          {
+            name: 'ConsoleAdapter',
+            environments: ['development'],
+          },
+        ]);
+      } else if (firstChar === 'u' || firstChar === 'U') {
+        metrics.activateAdapters([
+          {
+            name: 'GoogleAnalytics',
+            environments: ['production'],
+            config: {
+              id,
+            },
+          },
+          {
+            name: 'ConsoleAdapter',
+            environments: ['development'],
+          },
+        ]);
+      }
     }
   }
 

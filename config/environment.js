@@ -3,7 +3,11 @@
 module.exports = function (environment) {
   let ENV = {
     'ember-metrics': {
-      includeAdapters: ['google-analytics', 'console-adapter'],
+      includeAdapters: [
+        'google-analytics-four',
+        'google-analytics',
+        'console-adapter',
+      ],
     },
     routerScroll: {
       scrollWhenIdle: true,
