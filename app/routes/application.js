@@ -118,8 +118,17 @@ export default class ApplicationRoute extends Route {
     }
 
     api.set('site', site);
-
     let result = await api.fetch(`api/publicsitedata`);
+    if (!result.ok && result.status == 404) {
+      let publicsites = await api.fetch('api/v1/publicsites');
+      let sites = await publicsites.json();
+      if (sites.publicSites.length === 0) {
+        return {};
+      }
+      site = sites.publicSites[0].id;
+      api.set('site', site);
+      result = await api.fetch(`api/publicsitedata`);
+    }
     let json = await result.json();
     return json;
   }
