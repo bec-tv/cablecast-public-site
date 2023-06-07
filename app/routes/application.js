@@ -149,7 +149,7 @@ export default class ApplicationRoute extends Route {
         metrics.activateAdapters([
           {
             name: 'GoogleAnalyticsFour',
-            environments: ['production'],
+            environments: ['production', 'development'],
             config: {
               id,
             },
