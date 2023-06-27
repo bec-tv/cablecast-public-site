@@ -170,6 +170,14 @@ h1,h2,h3,h4,h5,h6 {
 	color: set-button-text-color($background);
 }
 
+.show-hit-highlight {
+  background-color: #C8FED4;
+}
+
+.show-hit-link {
+  color: set-button-text-color($background);
+}
+
 .show-page-header, .search-results-header {
   color: $public-text-dark;
 }

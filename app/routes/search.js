@@ -25,17 +25,38 @@ export default class SearchRoute extends Route {
     }
     let search = params.query;
     let api = this.get('api');
+
+    let config = this.modelFor('application');
+    let useFullText = config.useFullTextIndex;
     
-    let result = await api.fetch(`api/publicsitedata/shows`, {
-      search: search,
-      offset: offset,
-      page_size: PAGE_SIZE
-    });
+    let result;
+    if (useFullText && useFullText == true) {
+      result = await api.fetch(`api/publicsitedata/shows/search`, {
+        search: search,
+        offset: offset,
+        page_size: PAGE_SIZE
+      });
+    }
+    else {
+      result = await api.fetch(`api/publicsitedata/shows`, {
+        search: search,
+        offset: offset,
+        page_size: PAGE_SIZE
+      });
+    }
     let json = await result.json();
     return json;
   }
 
   setupController(controller, model) {
+    let config = this.modelFor('application');
+
+    let useFullText = config.useFullTextIndex;
+    if (!useFullText) {
+      useFullText = false;
+    }
+
+    controller.set('useFullText', useFullText);
     controller.set('model', model);
     controller.set('tempQuery', this.paramsFor(this.routeName).query);
   }

@@ -1,0 +1,15 @@
+<div ...attributes>
+  {{#if (eq hit.recordType 0)}}
+    <LinkTo class="show-hit-link" @route="show" @model={{@showId}} @query={{hash seekto=hit.offset}}>
+      <p>Chapter: {{{text}}} - {{total-run-time hit.offset}}</p>
+    </LinkTo>
+  {{else if (eq hit.recordType 1)}}
+    <LinkTo class="show-hit-link" @route="show" @model={{@showId}} @query={{hash seekto=hit.offset}}>
+      <p>Closed Caption: {{{text}}} - {{total-run-time hit.offset}}</p>
+    </LinkTo>
+  {{else}}
+    <LinkTo class="show-hit-link" @route="show" @model={{@showId}}>
+      <p>{{{text}}}</p>
+    </LinkTo>
+  {{/if}}
+</div>

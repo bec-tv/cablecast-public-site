@@ -9,6 +9,12 @@ export default class SearchController extends Controller {
   page = 1;
   query = null;
   tempQuery = null;
+  useFullText = false;
+
+  @computed('query')
+  get search() {
+    return this.get('query');
+  }
 
   @alias('model.meta')
   meta;

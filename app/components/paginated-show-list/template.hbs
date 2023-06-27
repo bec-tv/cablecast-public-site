@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-xs-12">
         <h1 class="search-results-header">
-          {{@title}}
-          <br>
+          {{@title}}</h1>
+          <div class="show-display-number">
           {{#if this.showPaginationControl}}
-            <small>
+            
               Displaying
               {{this.firstResult}}
               -
@@ -14,23 +14,23 @@
               of
               {{@meta.count}}
               {{#if (eq @meta.count 1)}}
-                show.
+                result.
               {{else}}
-                shows.
+                results.
               {{/if}}
-            </small>
+            
           {{else}}
-            <small>
+            
               Displaying
               {{@shows.length}}
               {{#if (eq @shows.length 1)}}
-                show.
+                result.
               {{else}}
-                shows.
+                results.
               {{/if}}
-            </small>
+            
           {{/if}}
-        </h1>
+          </div>
       </div>
     </div>
     <div class="show-player clearfix">
@@ -49,7 +49,11 @@
             <LoadingSpinner />
           {{else}}
             {{#each @shows as |result|}}
-              <ShowStub @show={{result}} />
+              {{#if @useFullText}}
+                <ShowStubFullText @show={{result}} @search={{search}}/>
+              {{else}}
+                <ShowStub @show={{result}}/>
+              {{/if}}
             {{else}}
               <h3>
                 Your search returned no results.

@@ -1,4 +1,4 @@
-<div class="show-stub" ...attributes>
+<div class="show-stub-full-text" ...attributes>
   {{#if @show.thumbnailUrl}}
     <LinkTo @route="show" @model={{@show.showId}} class="thumbnail-responsive">
       <img src="{{@show.thumbnailUrl}}?d=256x144" class="img-response" />
@@ -6,7 +6,12 @@
   {{else}}
     <div class="thumbnail-responsive"></div>
   {{/if}}
+  <div>
   <h3 class="show-stub-title-header u-break-text">
-    <LinkTo @route="show" @model={{@show.showId}} class="show-stub-title-link">{{@show.title}}</LinkTo>
+    <LinkTo @route="show" @model={{@show.showId}} class="show-stub-title-link">{{{titleHighlight}}}</LinkTo>
   </h3>
+  {{#if @show.hit}}
+    <ShowHit @hit={{show.hit}} @showId={{show.showId}} @search={{search}}/>
+  {{/if}}
+  </div>
 </div>
