@@ -12,8 +12,16 @@ export default class ShowStub extends Component {
     return ENV.rootURL;
   }
 
-  @computed('search', 'show')
+  @computed('search', 'show', 'show.hit', 'terms')
   get titleHighlight() {
-    return this.show.title.replace(new RegExp(this.search, "gi"), (match) => `<mark class="show-hit-highlight">${match}</mark>`);
+    if (this.show.hit.recordType === 2) {
+      var title = this.show.title;
+      if (this.terms) {
+        var allTerms = this.terms.join('|');
+        return title.replace(new RegExp(allTerms, "gi"), (match) => `<mark class="show-hit-highlight">${match}</mark>`);
+      }
+    }
+    
+    return this.show.title;
   }
 }

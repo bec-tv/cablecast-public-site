@@ -50,7 +50,7 @@
           {{else}}
             {{#each @shows as |result|}}
               {{#if @useFullText}}
-                <ShowStubFullText @show={{result}} @search={{search}}/>
+                <ShowStubFullText @show={{result}} @search={{search}} @terms={{@terms}}/>
               {{else}}
                 <ShowStub @show={{result}}/>
               {{/if}}
