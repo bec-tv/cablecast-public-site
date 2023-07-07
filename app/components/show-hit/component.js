@@ -4,10 +4,14 @@ import Component from '@ember/component';
 
 @classic
 export default class ShowHit extends Component {
-  @computed('hit', 'search')
+  @computed('hit', 'search', 'terms')
   get text() {
     let base = this.hit.text;
     let textShort = (base.length > 150) ? base.slice(0, 149) + '&hellip;' : base;
-    return textShort.replace(new RegExp(this.search, "gi"), (match) => `<mark class="show-hit-highlight">${match}</mark>`);
+    if (this.terms) {
+      var allTerms = this.terms.join('|');
+      return textShort.replace(new RegExp(allTerms, "gi"), (match) => `<mark class="show-hit-highlight">${match}</mark>`);
+    }
+    return textShort;
   }
 }
