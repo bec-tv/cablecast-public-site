@@ -14,15 +14,17 @@
       </LinkTo>
     </div>
     <div class="schedule-container">
-      <div class="play-icon is-desktop">
-        <LinkTo @route="show" @model={{@item.showId}} @alt={{@item.title}}>
-          <span
-            class="glyphicon glyphicon-play play-icon-link"
-            aria-hidden="true"
-            title="Watch now"
-          ></span>
-        </LinkTo>
-      </div>
+      {{#if @item.isWatchable}}
+        <div class="play-icon is-desktop">
+          <LinkTo @route="show" @model={{@item.showId}} @alt={{@item.title}}>
+            <span
+              class="glyphicon glyphicon-play play-icon-link"
+              aria-hidden="true"
+              title="Watch now"
+            ></span>
+          </LinkTo>
+        </div>
+      {{/if}}
       <div
         class="schedule-title {{unless this.media.isLg "is-mobile"}} u-truncate-text"
         title="{{@item.title}}"
