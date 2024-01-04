@@ -576,7 +576,7 @@ body {
   width: 100%;
   overflow: scroll;
   min-height: 750px;
-  // max-height: calc(100vh - 300px);
+  max-height: calc(100vh - 300px);
   margin-bottom: 10px;
   border: 1px solid #ccc;
 }
