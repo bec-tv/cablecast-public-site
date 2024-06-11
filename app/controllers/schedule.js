@@ -21,6 +21,23 @@ export default class ScheduleController extends Controller {
     return ENV.rootURL;
   }
 
+  @computed('model.scheduleItems.[]', 'currentDate',)
+  get filteredRuns() {
+    let runs = this.model.scheduleItems || [];
+    let currentDate = this.currentDate;
+    let nextDay = new Date(currentDate);
+    nextDay.setDate(nextDay.getDate() + 1);
+    if (runs && runs.length > 0) {
+      let filteredRuns = runs.filter((run) => {
+        let start = new Date(run.runDateTime);
+        return start >= currentDate && start <= nextDay;
+      });
+      return filteredRuns.slice(0, 8);
+    } else {
+      return [];
+    }
+  }
+
   @computed('currentDay')
   get currentDate() {
     return moment(this.currentDay, 'YYYY-MM-DD').toDate();

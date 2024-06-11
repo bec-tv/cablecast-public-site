@@ -13,6 +13,17 @@ export default class IndexController extends Controller {
 
   @computed('model.scheduleItems.[]')
   get showSchedule() {
-    return this.get('model.scheduleItems') && this.get('model.scheduleItems.length') > 0;
+    let now = new Date();
+    let startOfDay = new Date(now);
+    let endOfDay = new Date(now);
+    startOfDay.setHours(0, 0, 0, 0); // Set to the start of the current day
+    endOfDay.setHours(23, 59, 59, 999); // Set to the end of the current day
+    let schedule = this.get('model.scheduleItems') || [];
+    let todaysSchedule = schedule.filter((item) => {
+      let start = new Date(item.runDateTime);
+      let end = new Date(item.endDateTime);
+      return end >= startOfDay && start <= endOfDay;
+    });
+    return todaysSchedule.length > 0;
   }
 }
