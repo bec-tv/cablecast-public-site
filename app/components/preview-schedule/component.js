@@ -23,8 +23,8 @@ export default class PreviewSchedule extends Component {
     endOfDay.setHours(23, 59, 59, 999); // Set to the end of the current day
     if (this.runs && this.runs.length > 0) {
       let filteredRuns = this.runs.filter((run) => {
-        let end = new Date(run.endDateTime);
-        return end >= now && end <= endOfDay;
+        let start = new Date(run.runDateTime);
+        return start >= now && start <= endOfDay;
       });
       return filteredRuns.slice(0, 8);
     } else {
