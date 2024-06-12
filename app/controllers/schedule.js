@@ -21,7 +21,7 @@ export default class ScheduleController extends Controller {
     return ENV.rootURL;
   }
 
-  @computed('model.scheduleItems.[]', 'currentDate',)
+  @computed('model.scheduleItems.[]', 'currentDate')
   get filteredRuns() {
     let runs = this.model.scheduleItems || [];
     let currentDate = this.currentDate;
@@ -30,9 +30,10 @@ export default class ScheduleController extends Controller {
     if (runs && runs.length > 0) {
       let filteredRuns = runs.filter((run) => {
         let start = new Date(run.runDateTime);
-        return start >= currentDate && start <= nextDay;
+        let includeRun = start >= currentDate && start <= nextDay;
+        return includeRun;
       });
-      return filteredRuns.slice(0, 8);
+      return filteredRuns;
     } else {
       return [];
     }
