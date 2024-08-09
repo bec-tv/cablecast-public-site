@@ -157,6 +157,23 @@
       <hr>
     </div>
     {{/if}}
+
+    <!-- link example -->
+    <!--<a href="https://bectv.foxycart.com/cart?name=Cool%20Example&price=10&color=red&code=sku123">Add a red Cool Example</a>-->
+    <!-- form example -->
+    
+    <h3>ORDER COPIES</h3>
+    <form action="https://bectv.foxycart.com/cart" method="post" accept-charset="utf-8">
+      <input type="hidden" name="name" value="{{this.model.title}}" />
+      <input type="hidden" name="price" value="25" />
+      <input type="hidden" name="code" value="Show {{this.model.showId}}" />
+      <!--TEMP 10/24/19-BM discount for fine arts-->
+      {{!-- this basically isn't possible unless you add some sort of field display --}}
+      {{!-- {{#if (eq show.category.id "3")}}
+        <input type="hidden" name="coupon" value="JeffersonBandOnly" />
+      {{/if}} --}}
+      <input type="submit" value="Add to Cart" class="submit" />
+    </form>
     
     <div class="col-sm-6" style="padding-bottom: 20px;">
       <h3 class="show-page-airtimes-header">
