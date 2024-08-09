@@ -1,0 +1,49 @@
+name: Build Site
+
+on:
+  push:
+    branches:
+      - bec-dub-latest
+  pull_request:
+    branches:
+      - bec-dub-latest
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+        NODE_VERSION: 14
+        NODE_ENV: production
+        CC_LOCAL: TRUE
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v3
+      with:
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+          node-version: ${{ env.NODE_VERSION }}
+
+    - name: Install dependencies
+      run: npm install --no-optional
+
+    - name: Build project
+      run: |
+        node node_modules\ember-cli\bin\ember build --environment=production
+        cd dist
+        npm install express --save
+        npm install fastboot-app-server@3.0.0 --save
+        npm install
+
+    - name: Archive production build
+      run: |
+        Compress-Archive -Path dist\* -DestinationPath dist.zip
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist.zip
