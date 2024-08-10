@@ -28,7 +28,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
     - name: Install dependencies
-      run: npm install --no-optional
+      run: npm install
 
     - name: Install Ember CLI Globally
       run: npm install -g ember-cli@3.24.0
