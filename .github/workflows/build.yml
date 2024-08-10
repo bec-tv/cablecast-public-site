@@ -32,9 +32,8 @@ jobs:
 
     - name: Build project
       run: |
-        npx ember-cli build --environment=production
-        npm i --no-optional
-        npx ember-cli build --environment=production
+        npm -i -g ember-cli@3.24.0
+        ember build --environment=production
         cd dist
         npm install express --save
         npm install fastboot-app-server@3.0.0 --save
