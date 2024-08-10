@@ -32,7 +32,7 @@ jobs:
 
     - name: Build project
       run: |
-        node node_modules\ember-cli\bin\ember build --environment=production
+        node node_modules/ember-cli/bin/ember build --environment=production
         cd dist
         npm install express --save
         npm install fastboot-app-server@3.0.0 --save
