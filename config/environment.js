@@ -73,7 +73,7 @@ module.exports = function (environment) {
   }
 
   if (ENV.CC_LOCAL && environment === 'production') {
-    ENV.rootURL = '/CablecastPublicSite/';
+    ENV.rootURL = '/BECPublicSite/';
   }
 
   return ENV;
