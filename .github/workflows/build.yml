@@ -34,16 +34,19 @@ jobs:
       run: npm install -g ember-cli@3.24.0
 
     - name: Build project
-      run: |
-        npm run build
-        cd dist
-        npm install express --save
-        npm install fastboot-app-server@3.0.0 --save
-        npm install
+      run: npm run build
+    
+    - name: Install Express
+      run: cd dist && npm install express --save
+    
+    - name: Install Fastboot
+      run: cd dist && npm install fastboot-app-server@3.0.0 --save
+
+    - name: Install dependencies
+      run: cd dist && npm install
 
     - name: Archive production build
-      run: |
-        Compress-Archive -Path dist\* -DestinationPath dist.zip
+      run: Compress-Archive -Path dist\* -DestinationPath dist.zip
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
